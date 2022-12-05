@@ -1,0 +1,83 @@
+.login-background {
+    background: rgb(34, 193, 195);
+    background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+    height: 100vh;
+    position: relative;
+    .login-container {
+        width: 400px;
+        height: 600px;
+        position: fixed;
+
+        top: 50%;
+        left: 50%;
+        border-radius: 10px;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        .login-content {
+            padding: 20px;
+            .text-login {
+                font-weight: 600;
+                font-size: 2.4rem;
+                padding-top: 10px;
+            }
+            .login-input {
+                margin: 7px 0px;
+                .custom-input-password{
+                    position: relative;
+                    .icon-eye{
+                        position: absolute;
+                        right: 0.3rem;
+                        top:50%;
+                        transform: translateY(-50%);
+                        font-size: 1.4rem;
+                        cursor: pointer;
+                        
+                    }
+                }
+            }
+
+            .btn-login {
+                width: 100%;
+                margin: 10px 0;
+                border-radius: 16px;
+                border: none;
+                outline: none;
+                height: 36px;
+                color: #ffffff;
+                font-size: 1.4rem;
+                background: linear-gradient(135deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+            }
+            span {
+                font-size: 0.8rem;
+            }
+            .login-with {
+                font-size: 1.2rem;
+            }
+            .gg-login {
+                font-size: 2.2rem;
+                margin: 1.2rem;
+                padding: 16px;
+                border-radius: 50%;
+                background-color: red;
+                &:hover {
+                    color: red;
+                    //background-color: rgba($color: red, $alpha: 5.0);
+                    background-color: #ffffff;
+                    transition: all 0.3s ease;
+                }
+            }
+            .fb-login {
+                font-size: 2.2rem;
+                margin: 1.2rem;
+                padding: 16px;
+                border-radius: 50%;
+                background-color: #3578e5;
+                &:hover {
+                    color: #3578e5;
+                    background-color: #ffffff;
+                    transition: all 0.3s ease;
+                }
+            }
+        }
+    }
+}
