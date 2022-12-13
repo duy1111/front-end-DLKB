@@ -3,17 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import { getAllUser } from '../../services/userService';
-import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { getAllUser,createNewUserService } from '../../services/userService';
+import {  faPencil, faPlus,  faTrash } from '@fortawesome/free-solid-svg-icons';
+import ModalUser from './ModalUser';
 class UserManage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             arrUser: [],
+            isOpenModalUser: false,
         };
     }
 
     async componentDidMount() {
+        await this.getAllUsersFormReact()
+    }
+    getAllUsersFormReact = async() =>{
         let response = await getAllUser('');
         if (response && response.errCode === 0) {
             await this.setState({
@@ -23,12 +28,51 @@ class UserManage extends Component {
         }
     }
 
+    handleAddNewUser = ( ) =>{
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser
+        })
+      
+    }
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser
+        })
+    };
+
+    createNewUser = async(data) => {
+        try{
+
+            let response = await createNewUserService(data)
+            if(response&&response.errCode!==0){
+                alert(response.message)
+            }else{
+                await this.getAllUsersFormReact()
+                this.setState({
+                    isOpenModalUser :false
+                })
+            }
+            
+        }catch(e){
+            console.log(e)
+        }
+        console.log('check data ',data)
+    }
     render() {
         let arrUsers = this.state.arrUser;
-        console.log('check render', arrUsers);
+        
+        
         return (
             <div className="user-container">
+                <ModalUser 
+                    toggleFormParent = {this.toggleUserModal} 
+                    isOpen={this.state.isOpenModalUser}
+                    createNewUser = {this.createNewUser}
+                />
                 <div className="title text-center">Manage user with Duy</div>
+                <div className='mx-1'>
+                    <button className='btn btn-primary px-3' onClick={() => this.handleAddNewUser()} ><FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>Add new User</button>
+                </div>
                 <div className="user-table mt-4 mx-3">
                     <table id="customers">
                         <tr>

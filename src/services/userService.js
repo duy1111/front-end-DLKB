@@ -5,5 +5,8 @@ const handleLogin = (email, password) => {
 const getAllUser = (userId) => {
     return axios.get(`/api/get-all-user?id=${userId}`,{id:userId})
 }
+const createNewUserService = (data) => {
+    return axios.post(`/api/create-new-user`,data)
+}
 export default handleLogin;
-export {getAllUser}
+export {getAllUser ,createNewUserService}
