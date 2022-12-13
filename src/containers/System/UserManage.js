@@ -48,9 +48,7 @@ class UserManage extends Component {
                 alert(response.message)
             }else{
                 await this.getAllUsersFormReact()
-                this.setState({
-                    isOpenModalUser :false
-                })
+                
             }
             
         }catch(e){
