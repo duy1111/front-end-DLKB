@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import { getAllUser,createNewUserService } from '../../services/userService';
+import { getAllUser,createNewUserService,deleteNewUserService } from '../../services/userService';
 import {  faPencil, faPlus,  faTrash } from '@fortawesome/free-solid-svg-icons';
 import ModalUser from './ModalUser';
+import { emitter } from '../../utils/emitter';
 class UserManage extends Component {
     constructor(props) {
         super(props);
@@ -48,13 +49,29 @@ class UserManage extends Component {
                 alert(response.message)
             }else{
                 await this.getAllUsersFormReact()
+                emitter.emit('EVENT_CLEAR_MODAL_DATA',{'id':'your id'})
+            }
+            
+        }catch(e){
+            console.log(e)
+        }
+        //console.log('check data ',data)
+    }
+    handleDeleteUser = async(item) =>{
+        try{
+            console.log('check',item)
+            let response = await deleteNewUserService(item.id)
+            if(response&&response.errCode!==0){
+                alert(response.message)
+            }else{
+                await this.getAllUsersFormReact()
                 
             }
             
         }catch(e){
             console.log(e)
         }
-        console.log('check data ',data)
+        
     }
     render() {
         let arrUsers = this.state.arrUser;
@@ -86,11 +103,11 @@ class UserManage extends Component {
                                     <tr>
                                         <td>{item.email}</td>
                                         <td>{item.firstName}</td>
-                                        <td>{item.LastName}</td>
+                                        <td>{item.lastName}</td>
                                         <td>{item.address}</td>
                                         <td>
                                             <button className='btn-edit' ><FontAwesomeIcon icon={faPencil} /></button>
-                                            <button className='btn-delete' ><FontAwesomeIcon icon={faTrash} /></button>
+                                            <button className='btn-delete' onClick={() => this.handleDeleteUser(item)} ><FontAwesomeIcon icon={faTrash} /></button>
                                         </td>
                                     </tr>
                                 );

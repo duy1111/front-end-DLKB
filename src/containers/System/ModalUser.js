@@ -3,19 +3,35 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import {emitter} from '../../utils/emitter'
 class ModalUser extends Component {
-    state = {
-        email: '',
-        password: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-    };
+    
     constructor(props) {
+        
         super(props);
-        this.state = {};
+        this.state = {
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            address: '',
+        };
+        this.listenToEmitter();
+        
     }
-
+    listenToEmitter(){
+        emitter.on('EVENT_CLEAR_MODAL_DATA',data =>{
+            //console.log('listen emitter',data)
+            this.setState = {
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                address: '',
+            };
+        })
+        //vue - bus event
+    }
     toggle = () => {
         this.props.toggleFormParent();
     };
@@ -52,7 +68,9 @@ class ModalUser extends Component {
         this.toggle()
 
     };
-    componentDidMount() {}
+    componentDidMount() {
+        
+    }
 
     render() {
         //console.log('check render', this.props);
