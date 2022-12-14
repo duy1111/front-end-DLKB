@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
-import { getAllUser,createNewUserService,deleteNewUserService } from '../../services/userService';
-import {  faPencil, faPlus,  faTrash } from '@fortawesome/free-solid-svg-icons';
+import { getAllUser, createNewUserService, deleteNewUserService,editUserService } from '../../services/userService';
+import { faPencil, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ModalUser from './ModalUser';
+import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
 class UserManage extends Component {
     constructor(props) {
@@ -13,13 +14,15 @@ class UserManage extends Component {
         this.state = {
             arrUser: [],
             isOpenModalUser: false,
+            isOpenModalEditUser: false,
+            userEdit: {},
         };
     }
 
     async componentDidMount() {
-        await this.getAllUsersFormReact()
+        await this.getAllUsersFormReact();
     }
-    getAllUsersFormReact = async() =>{
+    getAllUsersFormReact = async () => {
         let response = await getAllUser('');
         if (response && response.errCode === 0) {
             await this.setState({
@@ -27,66 +30,97 @@ class UserManage extends Component {
             });
             console.log('data get all user', this.state.arrUser);
         }
-    }
-
-    handleAddNewUser = ( ) =>{
-        this.setState({
-            isOpenModalUser: !this.state.isOpenModalUser
-        })
-      
-    }
-    toggleUserModal = () => {
-        this.setState({
-            isOpenModalUser: !this.state.isOpenModalUser
-        })
     };
 
-    createNewUser = async(data) => {
-        try{
+    handleAddNewUser = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+        });
+    };
 
-            let response = await createNewUserService(data)
-            if(response&&response.errCode!==0){
-                alert(response.message)
-            }else{
-                await this.getAllUsersFormReact()
-                emitter.emit('EVENT_CLEAR_MODAL_DATA',{'id':'your id'})
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+        });
+    };
+    toggleUserEditModal = () => {
+        this.setState({
+            isOpenModalEditUser: !this.state.isOpenModalEditUser,
+        });
+    };
+
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUserService(data);
+            if (response && response.errCode !== 0) {
+                alert(response.message);
+            } else {
+                await this.getAllUsersFormReact();
+                emitter.emit('EVENT_CLEAR_MODAL_DATA', { id: 'your id' });
             }
-            
-        }catch(e){
-            console.log(e)
+        } catch (e) {
+            console.log(e);
         }
         //console.log('check data ',data)
-    }
-    handleDeleteUser = async(item) =>{
-        try{
-            console.log('check',item)
-            let response = await deleteNewUserService(item.id)
-            if(response&&response.errCode!==0){
-                alert(response.message)
-            }else{
-                await this.getAllUsersFormReact()
-                
+    };
+    handleDeleteUser = async (item) => {
+        try {
+            console.log('check', item);
+            let response = await deleteNewUserService(item.id);
+            if (response && response.errCode !== 0) {
+                alert(response.message);
+            } else {
+                await this.getAllUsersFormReact();
             }
-            
-        }catch(e){
-            console.log(e)
+        } catch (e) {
+            console.log(e);
         }
-        
+    };
+    handleEditUser = (item) => {
+        this.setState({
+            isOpenModalEditUser: !this.state.isOpenModalEditUser,
+            userEdit: item,
+        });
+    };
+
+    doEditUser = async(user) =>{
+        try {
+            console.log('check', user);
+            let response = await editUserService(user);
+            console.log(response)
+            if (response && response.errCode !== 0) {
+                alert(response.message);
+            } else {
+                await this.getAllUsersFormReact();
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
+
     render() {
         let arrUsers = this.state.arrUser;
-        
-        
+
         return (
             <div className="user-container">
-                <ModalUser 
-                    toggleFormParent = {this.toggleUserModal} 
+                <ModalUser
+                    toggleFormParent={this.toggleUserModal}
                     isOpen={this.state.isOpenModalUser}
-                    createNewUser = {this.createNewUser}
+                    createNewUser={this.createNewUser}
                 />
+                {this.state.isOpenModalEditUser && (
+                    <ModalEditUser
+                        toggleFormParent={this.toggleUserEditModal}
+                        isOpen={this.state.isOpenModalEditUser}
+                        currentUser={this.state.userEdit}
+                        editUser = {this.doEditUser}
+                    />
+                )}
                 <div className="title text-center">Manage user with Duy</div>
-                <div className='mx-1'>
-                    <button className='btn btn-primary px-3' onClick={() => this.handleAddNewUser()} ><FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>Add new User</button>
+                <div className="mx-1">
+                    <button className="btn btn-primary px-3" onClick={() => this.handleAddNewUser()}>
+                        <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>Add new User
+                    </button>
                 </div>
                 <div className="user-table mt-4 mx-3">
                     <table id="customers">
@@ -106,8 +140,12 @@ class UserManage extends Component {
                                         <td>{item.lastName}</td>
                                         <td>{item.address}</td>
                                         <td>
-                                            <button className='btn-edit' ><FontAwesomeIcon icon={faPencil} /></button>
-                                            <button className='btn-delete' onClick={() => this.handleDeleteUser(item)} ><FontAwesomeIcon icon={faTrash} /></button>
+                                            <button className="btn-edit" onClick={() => this.handleEditUser(item)}>
+                                                <FontAwesomeIcon icon={faPencil} />
+                                            </button>
+                                            <button className="btn-delete" onClick={() => this.handleDeleteUser(item)}>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </button>
                                         </td>
                                     </tr>
                                 );

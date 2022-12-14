@@ -8,6 +8,10 @@ const getAllUser = (userId) => {
 const createNewUserService = (data) => {
     return axios.post(`/api/create-new-user`,data)
 }
+const editUserService =  (data) => {
+    //console.log('check data',data)
+    return axios.put(`/api/update-user`,data)
+}
 
 const deleteNewUserService = (userId) =>{
     console.log(userId)
@@ -23,4 +27,4 @@ const deleteNewUserService = (userId) =>{
       })
 }
 export default handleLogin;
-export {getAllUser ,createNewUserService,deleteNewUserService}
+export {getAllUser ,createNewUserService,deleteNewUserService,editUserService}
