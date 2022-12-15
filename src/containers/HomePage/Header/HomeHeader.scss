@@ -1,0 +1,170 @@
+.home-header-container {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    // box-shadow: 0px 1px 1px rgb(0 0 0 / 18%);
+    background: rgba(255, 255, 255, 1);
+    z-index: 100;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.18);
+    .home-header-content {
+        width: 1200px;
+        height: 100%;
+        padding: 10px 15px;
+        display: flex;
+
+        .left-content {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            .icon-container {
+                font-size: 1.6rem;
+                margin-right: 1.2rem;
+            }
+            .logo-container {
+                .header-logo {
+                    background: url(../../../assets/images/logo.svg) center center no-repeat;
+                    height: 40px;
+                    width: 160px;
+                }
+            }
+        }
+        .center-content {
+            display: flex;
+            height: 100%;
+            width: 50%;
+            justify-content: space-between;
+            align-items: center;
+            .center-content-item {
+                height: 36px;
+
+                .center-content-item__title {
+                    font-size: 12px;
+                    width: 100%;
+                }
+                .center-content-item__content {
+                    font-size: 10px;
+
+                    width: 100%;
+                }
+            }
+        }
+        .right-content {
+            width: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+.home-header-banner {
+    background: url('../../../assets/images/bookingcare-cover-4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    width: 100vw;
+
+    .search-home {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
+        padding: 45px 0;
+        color: #333;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        min-height: 60vh;
+        .title1 {
+            font-size: 2.6rem;
+
+            text-shadow: 1px 1px 1px #333;
+            color: #fff;
+
+            font-weight: 300;
+        }
+        .title2 {
+            color: #fff;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+
+            text-shadow: 1px 1px 1px #333;
+            font-weight: 500;
+            align-items: center;
+        }
+        .search {
+            width: 400px;
+
+            border-radius: 25px;
+            background: #f7d800;
+            color: #fff;
+            outline: none;
+            border: 1px solid transparent;
+            line-height: 50px;
+            height: 50px;
+            padding-left: 50px;
+            padding-right: 25px;
+            position: relative;
+            align-items: center;
+            display: flex;
+            .icon {
+                position: absolute;
+                left: 24px;
+            }
+            input {
+                background: transparent;
+                outline: none;
+                border: none;
+                width: 100%;
+                flex: 1;
+
+                padding: 0;
+            }
+        }
+    }
+
+    .options {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+        padding-top: 30px;
+        padding-bottom: 20px;
+        height: 172px;
+        border: 1px solid red;
+        display: flex;
+        justify-content: center;
+
+        .option-child {
+            border: 1px solid gold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+            padding: 5px;
+            height: 122px;
+            .icon-child {
+                background-color: #fff;
+                position: relative;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                font-size: 1.6rem;
+                font-weight: bold;
+                color: #333;
+                color: #45c3d2;
+
+                .icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+            .text-child {
+                font-size: 1.2rem;
+                font-weight: bold;
+                &:hover {
+                    color: #45c3d2;
+                }
+            }
+        }
+    }
+}
