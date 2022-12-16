@@ -18,10 +18,19 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './HomeHeader.scss';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // optional
+import Tippy from '@tippyjs/react/headless';
+import {LANGUAGES} from '../../../utils';
+import { changeLanguageApp } from '../../../store/actions/appActions'
 class HomeHeader extends Component {
+
+    changeLanguage = (language) => {
+        
+        //fire redux event : actions
+        this.props.changeLanguageAppRedux(language)
+
+    }
     render() {
+        let language = this.props.language
         console.log('check props', this.props);
         return (
             <React.Fragment>
@@ -85,21 +94,21 @@ class HomeHeader extends Component {
 
                             <Tippy
                                 interactive 
-                                delay={[0, 700]}
-                                offset={[12, 8]}
+                                delay={[600, 800]}
+                                offset={[12, 0]}
                                 hideOnClick= 'true'
-                                placement="bottom-end"
+                                placement="bottom"
                                 render={(attrs) => (
-                                    <div className="box-Tippy" tabIndex="-1" {...attrs}>
-                                        <div className='item1' onClick={() => {}} >Việt Nam</div>
-                                        <div className='item2' >England</div>
+                                    <div className="box-Tippy"  {...attrs}>
+                                        <div className='item1' onClick={() => this.changeLanguage(LANGUAGES.VI)} >Việt Nam</div>
+                                        <div className='item2' onClick={() => this.changeLanguage(LANGUAGES.EN)} >England</div>
                                     </div>
                                 )}
                             >
                                 <div className="language">
                                     <FontAwesomeIcon className="icon-global" icon={faGlobeEurope} />
                                     <span className="split"></span>
-                                    <div>VN</div>
+                                    <div className='text' >{language}</div>
                                 </div>
                             </Tippy>
                         </div>
@@ -199,6 +208,7 @@ class HomeHeader extends Component {
 }
 
 const mapStateToProps = (state) => {
+    //console.log(state)
     return {
         isLoggedIn: state.user.isLoggedIn,
         language: state.app.language,
@@ -206,7 +216,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

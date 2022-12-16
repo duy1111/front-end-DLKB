@@ -54,12 +54,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            
             .right-content-support{
                 display: flex;
                 align-items: center;
                 .icon{
                     font-size: 1.6rem;
                     margin-right: 4px;
+                    color: #45c3d2;
                 }
                 .text{
                     font-size: 1.4rem;
@@ -79,6 +81,10 @@
                 .icon-global{
                     font-size: 1.6rem;
                     margin-right: 3px;
+                    
+                }
+                .text{
+                    font-size: 1.4rem;
                 }
             }
         }
@@ -158,7 +164,7 @@
         height: 172px;
         display: flex;
         justify-content: center;
-
+        
         .option-child {
          
             display: flex;
