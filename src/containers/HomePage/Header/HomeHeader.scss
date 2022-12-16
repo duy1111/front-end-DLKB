@@ -54,6 +54,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            .right-content-support{
+                display: flex;
+                align-items: center;
+                .icon{
+                    font-size: 1.6rem;
+                    margin-right: 4px;
+                }
+                .text{
+                    font-size: 1.4rem;
+                }
+            }
+            
+            .language{
+                margin-left: 32px;
+                display: flex;
+                align-items: center;
+                .split{
+                    width: 2px;
+                    height: 16px;
+                    background-color: #45c3d2;
+                    margin-right: 3px;
+                }
+                .icon-global{
+                    font-size: 1.6rem;
+                    margin-right: 3px;
+                }
+            }
         }
     }
 }
@@ -110,6 +137,7 @@
             .icon {
                 position: absolute;
                 left: 24px;
+                color: #333;
             }
             input {
                 background: transparent;
@@ -128,12 +156,11 @@
         padding-top: 30px;
         padding-bottom: 20px;
         height: 172px;
-        border: 1px solid red;
         display: flex;
         justify-content: center;
 
         .option-child {
-            border: 1px solid gold;
+         
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -148,7 +175,7 @@
                 border-radius: 50%;
                 font-size: 1.6rem;
                 font-weight: bold;
-                color: #333;
+                
                 color: #45c3d2;
 
                 .icon {
@@ -161,10 +188,39 @@
             .text-child {
                 font-size: 1.2rem;
                 font-weight: bold;
+                color: #333;
                 &:hover {
                     color: #45c3d2;
                 }
             }
         }
+    }
+}
+.box-Tippy{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 8px;
+    background: rgba(255, 255, 255,1);
+    box-shadow: rgba(0, 0, 0,  12%) 0px 2px 12px;
+    align-items: center;
+    min-width: 76px;
+    .item1{
+        padding:8px 4px ;
+        font-size: 1rem;
+        border-bottom: 1px solid #333;
+        cursor: pointer;
+        &:hover {
+            color: #45c3d2;
+        }
+    }
+    .item2{
+        padding:8px 4px ;
+        font-size: 1rem;
+        cursor: pointer;
+        &:hover {
+            color: #45c3d2;
+        }
+        
     }
 }
