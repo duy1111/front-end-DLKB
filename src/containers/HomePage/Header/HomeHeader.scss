@@ -1,6 +1,9 @@
 .home-header-container {
     height: 100px;
     display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
     justify-content: center;
     box-sizing: border-box;
     // box-shadow: 0px 1px 1px rgb(0 0 0 / 18%);

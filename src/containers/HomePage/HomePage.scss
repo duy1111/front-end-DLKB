@@ -6,8 +6,6 @@
     align-items: center;
 }
 
-
-
 .slick-prev {
     height: 45px !important;
     width: 40px !important;
@@ -38,9 +36,31 @@
     }
 }
 
-
 .section-share {
-    &.section-specialty{
+    &.section-about{
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        height: 500px !important;
+        .section-about-header{
+            padding: 10px 0 10px 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        .section-about-content{
+            display: flex;
+            .content-left{
+                width: 50%;
+                border: 1px solid red;
+            }
+            .content-right{
+                padding: 20px;
+
+            }
+        }
+    }
+    &.section-specialty {
         background-color: #fff;
         .img-custom {
             background-position: center center;
@@ -50,27 +70,23 @@
             background: url(../../assets/specialty/co-xuong-khop.jpg);
             width: 278px;
             height: 150px;
-            
         }
     }
-    &.section-medical-facility{
+    &.section-medical-facility {
         background-color: #f5f5f5;
         .img-custom {
-           
             background-repeat: no-repeat;
             background-size: cover !important;
             background-color: #eee;
             background: url(../../assets/mediacalFacility/095119-benh-vien-cho-ray-h1.jpg);
             width: 278px;
             height: 150px;
-            
         }
     }
-    &.section-outstandingDoctor{
-        
+    &.section-outstandingDoctor {
         background-color: #fff;
 
-        .outer-bg{
+        .outer-bg {
             display: flex;
             //border: 1px solid red;
             margin-bottom: 20px;
@@ -84,14 +100,13 @@
                 width: 150px;
                 height: 150px;
                 border-radius: 50%;
-                
             }
         }
-        .section-body{
+        .section-body {
             border: 1px solid #f5f5f5;
         }
     }
-    &.section-Handbook{
+    &.section-Handbook {
         background-color: #f5f5f5;
         .img-custom {
             background-position: center center;
@@ -101,11 +116,10 @@
             background: url(../../assets/handBook/174230-bac-si-co-xuong-khop-phan-3.png);
             width: 278px;
             height: 150px;
-            
         }
     }
     height: 330px;
-    
+
     //border: 1px solid red;
     display: flex;
 
@@ -117,8 +131,6 @@
         background-repeat: no-repeat;
         padding-top: 24px;
         margin-top: 12px;
-        
-        
     }
 }
 .section-content {
@@ -150,6 +162,47 @@
             }
         }
     }
-    
 }
+.home-footer {
+    background: #64b9e5;
+    color: #fff;
+    padding: 10px;
+    height: 80px;
+    width: 100vw;
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    .footer-content {
+        width: 1200px;
+        display: flex;
+        justify-content: space-between;
+        .info-footer {
+        }
+        .icon-footer {
+            .fb {
+                //background-color: red;
+                width: 32px;
+                height: 32px;
+                color: #3578e5;
 
+                //padding-left: 4px;
+                padding: 2px 0px 0px 4px;
+                font-size: 2rem;
+                //background-color: #282e41;
+            }
+            .gg {
+
+                //background-color: #3578e5;
+                width: 32px;
+                height: 32px;
+                
+                font-size: 2rem;
+                color: red;
+                //font-size: 1.5rem;
+                margin-left: 24px;
+                //background-color: #282e41;
+                padding: 3px;
+            }
+        }
+    }
+}
