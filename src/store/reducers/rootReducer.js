@@ -25,11 +25,18 @@ const userPersistConfig = {
     whitelist: ['isLoggedIn', 'userInfo']
 };
 
+const appPersistConfig = {
+    ...persistCommonConfig,
+    key:'app',
+    whitelist: ['language']
+
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (history) => combineReducers({
     router: connectRouter(history),
     admin: persistReducer(adminPersistConfig, adminReducer),
     user: persistReducer(userPersistConfig, userReducer),
 
-    app: appReducer
+    app: persistReducer(appPersistConfig,appReducer)
 })
