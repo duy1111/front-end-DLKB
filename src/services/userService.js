@@ -12,7 +12,9 @@ const editUserService =  (data) => {
     //console.log('check data',data)
     return axios.put(`/api/update-user`,data)
 }
-
+const getAllCodeService = (inputType) => {
+    return axios.get(`/api/allCode?type=${inputType}`)
+}
 const deleteNewUserService = (userId) =>{
     console.log(userId)
     //return axios.delete(`/api/delete-user`,{id : userId })
@@ -27,4 +29,4 @@ const deleteNewUserService = (userId) =>{
       })
 }
 export default handleLogin;
-export {getAllUser ,createNewUserService,deleteNewUserService,editUserService}
+export {getAllUser ,createNewUserService,deleteNewUserService,editUserService,getAllCodeService}
