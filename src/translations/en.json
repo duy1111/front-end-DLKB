@@ -47,7 +47,19 @@
     },
 
     "manage-user":{
-        "image":"image"
+        "image":"Image",
+        "add-new-user":"ADD A NEW USER",
+        "email":"Email",
+        "password":"Password",
+        "first-name":"First name",
+        "last-name":"Last name",
+        "address":"Address",
+        "phone-number":"Phone number",
+        "position":"Position",
+        "gender":"Gender",
+        "role":"Role",
+        "upload-image":"Upload image",
+        "save":"Save"
     }
     
 }
