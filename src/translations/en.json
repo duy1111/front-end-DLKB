@@ -59,7 +59,8 @@
         "gender":"Gender",
         "role":"Role",
         "upload-image":"Upload image",
-        "save":"Save"
+        "save":"Create",
+        "edit":"Update"
     }
     
 }

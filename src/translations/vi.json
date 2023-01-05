@@ -57,7 +57,8 @@
         "gender":"Giới tính",
         "role":"Vai trò",
         "upload-image":"Tải ảnh",
-        "save":"Lưu"
+        "save":"Tạo",
+        "edit":"Lưu"
     }
     
 }
