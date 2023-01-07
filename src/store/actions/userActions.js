@@ -14,3 +14,4 @@ export const userLoginFail = () => ({
 export const processLogout = () => ({
     type: actionTypes.PROCESS_LOGOUT
 })
+

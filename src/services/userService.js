@@ -9,7 +9,7 @@ const createNewUserService = (data) => {
     return axios.post(`/api/create-new-user`,data)
 }
 const editUserService =  (data) => {
-    console.log('check data',data)
+    
     return axios.put(`/api/update-user`,data)
 }
 const getAllCodeService = (inputType) => {
@@ -28,5 +28,8 @@ const deleteNewUserService = (userId) =>{
         },
       })
 }
+const getTopDoctorHomeServices = (limit) => {
+    return axios.get(`/api/top-doctor-home?limit=${limit}`,{limit:limit})
+}
 export default handleLogin;
-export {getAllUser ,createNewUserService,deleteNewUserService,editUserService,getAllCodeService}
+export {getAllUser ,createNewUserService,deleteNewUserService,editUserService,getAllCodeService,getTopDoctorHomeServices}
