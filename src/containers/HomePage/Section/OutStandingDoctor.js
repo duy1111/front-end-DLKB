@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import Slider from 'react-slick';
 import { LANGUAGES } from '../../../utils';
+import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
+
 class OutStandingDoctor extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +25,10 @@ class OutStandingDoctor extends Component {
             });
         }
     }
-
+    handleViewDetailDoctor = (doctor) => {
+        console.log('check doctor detail',doctor)
+        this.props.history.push(`/detail-doctor/${doctor.id}`)
+    };
     render() {
         let allDoctors = this.state.arrDoctors;
         let language = this.props.language;
@@ -31,8 +37,12 @@ class OutStandingDoctor extends Component {
             <div className="section-share section-outstandingDoctor">
                 <div className="section-content">
                     <div className="section-header">
-                        <span className="Popular-section">Bác sĩ nổi bật tuần qua</span>
-                        <button className="btn-section">Xem thêm</button>
+                        <span className="Popular-section">
+                            <FormattedMessage id="home-page.outstanding-doctor" />
+                        </span>
+                        <button className="btn-section">
+                            <FormattedMessage id="home-page.more-info" />
+                        </button>
                     </div>
                     <Slider {...this.props.settings}>
                         {allDoctors &&
@@ -46,9 +56,14 @@ class OutStandingDoctor extends Component {
                                 let nameVi = `${item.positionData.valueVi}, ${item.firstName} ${item.lastName}`;
                                 let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                                 return (
-                                    <div className="section-body" key={index}>
+                                    <div
+                                        className="section-body"
+                                        key={index}
+                                        onClick={() => this.handleViewDetailDoctor(item)}
+                                    >
                                         <div className="outer-bg">
-                                            <div className="img-custom"
+                                            <div
+                                                className="img-custom"
                                                 style={{ backgroundImage: `url(${imageBase64})` }}
                                             ></div>
                                         </div>
@@ -81,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));

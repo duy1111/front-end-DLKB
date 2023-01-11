@@ -59,6 +59,12 @@
         "upload-image":"Tải ảnh",
         "save":"Tạo",
         "edit":"Lưu"
+    },
+
+    "home-page":{
+        "outstanding-doctor":"Bác sĩ nổi bật tuần qua",
+        "more-info":"Xem thêm"
     }
+
     
 }
