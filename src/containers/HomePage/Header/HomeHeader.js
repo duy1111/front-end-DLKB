@@ -21,11 +21,15 @@ import './HomeHeader.scss';
 import Tippy from '@tippyjs/react/headless';
 import { LANGUAGES } from '../../../utils';
 import { changeLanguageApp } from '../../../store/actions/appActions';
+import { withRouter } from 'react-router';
 class HomeHeader extends Component {
     changeLanguage = (language) => {
         //fire redux event : actions
         this.props.changeLanguageAppRedux(language);
     };
+    returnToHome = () => {
+        this.props.history.push(`/home`)
+    }
     render() {
         let language = this.props.language;
 
@@ -37,7 +41,7 @@ class HomeHeader extends Component {
                             <div className="icon-container">
                                 <FontAwesomeIcon className="icon-menu" icon={faBars} />
                             </div>
-                            <div className="logo-container">
+                            <div className="logo-container" onClick={() => this.returnToHome()}>
                                 <div className="header-logo"></div>
                             </div>
                         </div>
@@ -224,4 +228,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeHeader));

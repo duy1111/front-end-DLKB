@@ -7,7 +7,8 @@ const initialState = {
     positions: [],
     users: [],
     topDoctors: [],
-    allDoctors:[],
+    allDoctors: [],
+    allScheduleTime:[],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -85,17 +86,17 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             };
-            case actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS:
-                
-                //console.log('check state.allDoctors', state.allDoctors);
-                return {
-                    ...state,
-                };
-            case actionTypes.SAVE_DETAIL_DOCTOR_FAILED:
-                
-                return {
-                    ...state,
-                };
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
+            state.allScheduleTime = action.data;
+            return {
+                ...state,
+            };
+
+        case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED:
+            state.allDoctors = [];
+            return {
+                ...state,
+            };
         default:
             return state;
     }

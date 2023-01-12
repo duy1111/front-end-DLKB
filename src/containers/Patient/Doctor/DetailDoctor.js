@@ -46,31 +46,35 @@ class DetailDoctor extends Component {
             <>
                 <HomeHeader isShowBanner={false} />
                 <div className="doctor-detail-container">
-                    <div className="intro-doctor">
-                        <div className="content-left">
-                            <div
-                                className="avatar"
-                                style={{
-                                    backgroundImage: `url(${
-                                        detailDoctor && detailDoctor.image ? detailDoctor.image : ''
-                                    })`,
-                                }}
-                            ></div>
-                        </div>
-                        <div className="content-right">
-                            <div className="doctor-title">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                            <div className="doctor-content">
-                                {detailDoctor.Markdown && detailDoctor.Markdown.description && (
-                                    <span>{detailDoctor.Markdown.description}</span>
-                                )}
+                    <div className='intro-doctor-container'>
+                        <div className="intro-doctor">
+                            <div className="content-left">
+                                <div
+                                    className="avatar"
+                                    style={{
+                                        backgroundImage: `url(${
+                                            detailDoctor && detailDoctor.image ? detailDoctor.image : ''
+                                        })`,
+                                    }}
+                                ></div>
+                            </div>
+                            <div className="content-right">
+                                <div className="doctor-title">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                                <div className="doctor-content">
+                                    {detailDoctor.Markdown && detailDoctor.Markdown.description && (
+                                        <span>{detailDoctor.Markdown.description}</span>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className="schedule-doctor"></div>
-                    <div className="detail-info-doctor">
-                        {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
-                            <div dangerouslySetInnerHTML={this.createMarkup(detailDoctor.Markdown.contentHTML)} />
-                        )}
+                    <div className='detail-info-doctor-container'>
+                        <div className="detail-info-doctor">
+                            {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
+                                <div dangerouslySetInnerHTML={this.createMarkup(detailDoctor.Markdown.contentHTML)} />
+                            )}
+                        </div>
                     </div>
                     <div className="comment-doctor"></div>
                 </div>

@@ -36,5 +36,19 @@
             opacity: 0.8;
         }
     }
+    .create-content-doctor{
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border-radius: 2px;
+        outline: none;
+        border: none;
+        background-color: rgb(35, 35, 151);
+        color: #ffffff;
+        cursor: pointer;
+        padding: 5px;
+        &:hover{
+            opacity: 0.8;
+        }
+    }
     
 }
