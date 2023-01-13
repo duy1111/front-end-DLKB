@@ -4,6 +4,7 @@ import HomeHeader from '../../../containers/HomePage/Header/HomeHeader';
 import './DetailDoctor.scss';
 import { getDetailInfoDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
@@ -46,7 +47,7 @@ class DetailDoctor extends Component {
             <>
                 <HomeHeader isShowBanner={false} />
                 <div className="doctor-detail-container">
-                    <div className='intro-doctor-container'>
+                    <div className="intro-doctor-container">
                         <div className="intro-doctor">
                             <div className="content-left">
                                 <div
@@ -68,8 +69,15 @@ class DetailDoctor extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="schedule-doctor"></div>
-                    <div className='detail-info-doctor-container'>
+                    <div className="schedule-doctor">
+                        <div className="content-left">
+                            <DoctorSchedule
+                                detailDoctor={detailDoctor}
+                            />
+                        </div>
+                        <div className="content-right"></div>
+                    </div>
+                    <div className="detail-info-doctor-container">
                         <div className="detail-info-doctor">
                             {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML && (
                                 <div dangerouslySetInnerHTML={this.createMarkup(detailDoctor.Markdown.contentHTML)} />

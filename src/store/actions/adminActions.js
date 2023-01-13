@@ -8,6 +8,7 @@ import {
     getTopDoctorHomeServices,
     getAllDoctors,
     saveDetailDoctor,
+    saveBulkSchedule,
 } from '../../services/userService';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
@@ -299,6 +300,34 @@ export const fetchAllScheduleTime = () => {
             dispatch({
                 type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
             });
+        }
+    };
+};
+
+
+
+export const saveBulkSchedules = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveBulkSchedule(data);
+            //console.log('check res all doctor', res.data);
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.SAVE_BULK_SCHEDULE_SUCCESS,
+                });
+                toast.success('Save a schedule succeed!');
+            } else {
+                dispatch({
+                    type: actionTypes.SAVE_BULK_SCHEDULE_FAILED,
+                });
+                toast.error('Save a schedule failed!');
+            }
+        } catch (e) {
+            console.log('FETCH_ALL_DOCTORS_FAILED', e);
+            dispatch({
+                type: actionTypes.SAVE_BULK_SCHEDULE_FAILED,
+            });
+            toast.error('Save a schedule failed!');
         }
     };
 };

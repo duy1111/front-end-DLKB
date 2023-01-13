@@ -25,6 +25,9 @@
                 border: 1px solid red;
                 padding: 5px 10px;
                 width: 120px;
+                &.active{
+                    background-color: orange;
+                }
             }
         }
     }
