@@ -82,6 +82,13 @@
             "choose":"Choose",
             "book-free":"and book (free)"
 
+        },
+        "extra-info-doctor":{
+            "text-address":"Clinic address",
+            "price":"examination price: ",
+            "detail":"See details",
+            "payment":"The patient can pay the cost in the form of: ",
+            "hide-price":"Hide price list"
         }
     },
     "admin":{
@@ -92,7 +99,13 @@
             "intro":"Introduction",
             
             "add":"Create infor",
-            "save":"Save infor"
+            "save":"Save infor",
+            "price":"Price",
+            "payment":"Payment",
+            "province":"Province",
+            "nameClinic":"Clinic's name",
+            "addressClinic":"Clinic's address",
+            "note":"Note"
         }
         
     }
