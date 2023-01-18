@@ -61,7 +61,7 @@ class ManageDoctor extends Component {
             let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE');
             let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT');
             let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
-            console.log('check data from redux', this.props.allRequiredDoctorInfo);
+            
             this.setState({
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
@@ -74,7 +74,7 @@ class ManageDoctor extends Component {
             let dataSelectPrice = this.buildDataInputSelect(resPrice, 'PRICE');
             let dataSelectPayment = this.buildDataInputSelect(resPayment, 'PAYMENT');
             let dataSelectProvince = this.buildDataInputSelect(resProvince, 'PROVINCE');
-            console.log('check data from redux', this.props.allRequiredDoctorInfo);
+           
             this.setState({
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
@@ -179,7 +179,7 @@ class ManageDoctor extends Component {
             addressClinic: this.state.addressClinic,
             note: this.state.note,
         });
-        //console.log('check state', this.state);
+       
     };
     buildDataInputSelect = (inputData, type) => {
         let result = [];
@@ -223,7 +223,7 @@ class ManageDoctor extends Component {
                 });
             }
         }
-        console.log('check result', inputData);
+       
         return result;
     };
     render() {

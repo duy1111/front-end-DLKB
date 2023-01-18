@@ -15,7 +15,7 @@ const getAllCodeService = (inputType) => {
     return axios.get(`/api/allCode?type=${inputType}`);
 };
 const deleteNewUserService = (userId) => {
-    console.log(userId);
+    
     //return axios.delete(`/api/delete-user`,{id : userId })
     return axios.delete('/api/delete-user', {
         // headers: {
@@ -51,6 +51,9 @@ const getScheduleDoctorByDate = (doctorId, date) => {
 const getExtraInfoDoctorById = (doctorId, date) => {
     return axios.get(`/api/get-extra-info-doctor-by-id?doctorId=${doctorId}&date=${date}`);
 };
+const getProfileDoctorById = (doctorId, date) => {
+    return axios.get(`/api/get-profile-doctor-by-id?doctorId=${doctorId}&date=${date}`);
+};
 export default handleLogin;
 export {
     getAllUser,
@@ -65,4 +68,5 @@ export {
     saveBulkSchedule,
     getScheduleDoctorByDate,
     getExtraInfoDoctorById,
+    getProfileDoctorById,
 };

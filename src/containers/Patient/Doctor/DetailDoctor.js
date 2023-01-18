@@ -23,7 +23,7 @@ class DetailDoctor extends Component {
                     detailDoctor: res.data,
                 });
             }
-            console.log(res);
+            
         }
     }
 
@@ -43,7 +43,7 @@ class DetailDoctor extends Component {
             nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
             nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
         }
-        console.log('check state', this.state);
+      
         return (
             <>
                 <HomeHeader isShowBanner={false} />
@@ -63,9 +63,7 @@ class DetailDoctor extends Component {
                             <div className="content-right">
                                 <div className="doctor-title">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                                 <div className="doctor-content">
-                                    {detailDoctor.Markdown && detailDoctor.Markdown.description && (
-                                        <span>{detailDoctor.Markdown.description}</span>
-                                    )}
+                                    
                                 </div>
                             </div>
                         </div>

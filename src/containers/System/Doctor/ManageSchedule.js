@@ -34,14 +34,14 @@ class ManageSchedule extends Component {
 
         if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
             let data = this.props.allScheduleTime;
-            console.log('check props time', data);
+            
             if (data && data.length > 0) {
                 data = data.map((item) => {
                     item.isSelected = false;
                     return item;
                 });
             }
-            console.log('check props time data', data);
+           
             this.setState({
                 rangeTime: data,
             });
@@ -70,7 +70,7 @@ class ManageSchedule extends Component {
                 result.push(object);
             });
         }
-        console.log('check result', inputData);
+        
         return result;
     };
     handleOnChangeDatePicker = (date) => {
@@ -90,7 +90,7 @@ class ManageSchedule extends Component {
             this.setState({
                 rangeTime: rangeTime,
             });
-            console.log('check time click', data);
+            
         }
     };
     handleSaveSchedule = async () => {
@@ -128,8 +128,7 @@ class ManageSchedule extends Component {
             doctorId: selectedOption.value,
             date: ''+formatedDate,
         });
-        console.log('check res', res);
-        console.log('check result', result);
+        
     };
     render() {
         let { rangeTime } = this.state;

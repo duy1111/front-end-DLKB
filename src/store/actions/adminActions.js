@@ -50,14 +50,14 @@ export const fetchPositionStart = () => {
         try {
             let res = await getAllCodeService('POSITION');
             if (res && res.errCode === 0) {
-                console.log('check get state : ', res);
+              
                 dispatch(fetchPositionSuccess(res.data));
             } else {
                 dispatch(fetchPositionFailed());
             }
         } catch (e) {
             dispatch(fetchPositionFailed());
-            console.log('fetch role start error', e);
+           
         }
     };
 };

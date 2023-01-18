@@ -31,7 +31,7 @@ class DoctorExtraInfor extends Component {
                     extraInfo: res.data,
                 });
             }
-            console.log('ddddd', res);
+           
         }
     }
 
@@ -44,7 +44,7 @@ class DoctorExtraInfor extends Component {
     render() {
         let { isShowDetailInfo, extraInfo } = this.state;
         let { language } = this.props;
-        console.log('check ddd state', this.state);
+       
         return (
             <div className="doctor-extraInfo-container">
                 <div className="content-up">
