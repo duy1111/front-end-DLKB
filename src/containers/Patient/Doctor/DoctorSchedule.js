@@ -18,8 +18,9 @@ class DoctorSchedule extends Component {
             selectedOption: null,
             arrDays: [],
             allAvailableTime: [],
-            isOpenModalBooking:false,
-            dataScheduleTimeModal:{},
+            isOpenModalBooking: false,
+            dataScheduleTimeModal: {},
+            dayBooking:0,
         };
     }
 
@@ -70,6 +71,7 @@ class DoctorSchedule extends Component {
                 allTime = res.data;
                 this.setState({
                     allAvailableTime: allTime,
+                    dayBooking: +this.state.arrDays[0].value,
                 });
             }
             console.log(res);
@@ -104,6 +106,7 @@ class DoctorSchedule extends Component {
             }
             this.setState({
                 arrDays: arrDays,
+                dayBooking: +this.state.arrDays[0].value,
             });
         }
     }
@@ -135,9 +138,11 @@ class DoctorSchedule extends Component {
                     allAvailableTime: allTime,
                 });
             }
-            
         }
-        this.setState({ selectedOption }, () => console.log(`Option selected:`, this.state.selectedOption));
+        this.setState({ selectedOption }, () => console.log(`Option selected:`, typeof(this.state.selectedOption.value) ));
+        this.setState({
+            dayBooking: this.state.selectedOption.value
+        })
     };
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -145,27 +150,28 @@ class DoctorSchedule extends Component {
     handleClickScheduleTime = (time) => {
         this.setState({
             isOpenModalBooking: true,
-            dataScheduleTimeModal:time
-        })
-        console.log('check btn time',time)
-    }
+            dataScheduleTimeModal: time,
+        });
+        console.log('check btn time', time);
+    };
     closeBookingClose = () => {
         this.setState({
-            isOpenModalBooking: false
-        })
-    }
+            isOpenModalBooking: false,
+        });
+    };
     render() {
         let options = this.state.arrDays;
-        let { allAvailableTime ,isOpenModalBooking,dataScheduleTimeModal} = this.state;
+        let { allAvailableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
         let { language } = this.props;
-        console.log('check data schedule time',dataScheduleTimeModal);
-
+        console.log('check data schedule time', this.state.dayBooking);
+        console.log('check data of DayBooking',typeof(this.state.dayBooking))
         return (
             <>
-                <BookingModal 
+                <BookingModal
                     isOpenModal={isOpenModalBooking}
                     closeBookingClose={this.closeBookingClose}
                     dataTime={dataScheduleTimeModal}
+                    dateBooking={this.state.dayBooking}
                 />
                 <div className="doctor-schedule-container">
                     <div className="all-schedule">
@@ -193,9 +199,13 @@ class DoctorSchedule extends Component {
                                                 ? item.timeTypeData.valueVi
                                                 : item.timeTypeData.valueEn;
                                         //let timeTypeData
-                                        return <button key={index} onClick={() => this.handleClickScheduleTime(item)} >{timeDisplay}</button>;
+                                        return (
+                                            <button key={index} onClick={() => this.handleClickScheduleTime(item)}>
+                                                {timeDisplay}
+                                            </button>
+                                        );
                                     })}
-    
+
                                     <div className="book-free">
                                         <div>
                                             <FormattedMessage id="patient.detail-doctor.choose" />{' '}
