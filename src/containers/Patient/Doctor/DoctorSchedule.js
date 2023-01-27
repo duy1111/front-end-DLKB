@@ -20,7 +20,7 @@ class DoctorSchedule extends Component {
             allAvailableTime: [],
             isOpenModalBooking: false,
             dataScheduleTimeModal: {},
-            dayBooking:0,
+            dayBooking: 0,
         };
     }
 
@@ -139,10 +139,12 @@ class DoctorSchedule extends Component {
                 });
             }
         }
-        this.setState({ selectedOption }, () => console.log(`Option selected:`, typeof(this.state.selectedOption.value) ));
+        this.setState({ selectedOption }, () =>
+            console.log(`Option selected:`, typeof this.state.selectedOption.value),
+        );
         this.setState({
-            dayBooking: this.state.selectedOption.value
-        })
+            dayBooking: this.state.selectedOption.value,
+        });
     };
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -164,7 +166,7 @@ class DoctorSchedule extends Component {
         let { allAvailableTime, isOpenModalBooking, dataScheduleTimeModal } = this.state;
         let { language } = this.props;
         console.log('check data schedule time', this.state.dayBooking);
-        console.log('check data of DayBooking',typeof(this.state.dayBooking))
+        console.log('check data of DayBooking', typeof this.state.dayBooking);
         return (
             <>
                 <BookingModal

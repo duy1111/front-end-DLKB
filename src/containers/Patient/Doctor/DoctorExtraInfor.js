@@ -17,7 +17,18 @@ class DoctorExtraInfor extends Component {
         };
     }
 
-    componentDidMount() {}
+    async componentDidMount() {
+        let { detailDoctor } = this.props;
+        let id = detailDoctor.id;
+        if (detailDoctor) {
+            let res = await getExtraInfoDoctorById(id);
+            if (res && res.errCode === 0) {
+                this.setState({
+                    extraInfo: res.data,
+                });
+            }
+        }
+    }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         let { language } = this.props;
@@ -31,7 +42,6 @@ class DoctorExtraInfor extends Component {
                     extraInfo: res.data,
                 });
             }
-           
         }
     }
 
@@ -44,7 +54,7 @@ class DoctorExtraInfor extends Component {
     render() {
         let { isShowDetailInfo, extraInfo } = this.state;
         let { language } = this.props;
-       
+
         return (
             <div className="doctor-extraInfo-container">
                 <div className="content-up">

@@ -17,7 +17,9 @@ class DefaultClass extends Component {
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.language !== this.props.language) {
         
+        }
     }
   
     
