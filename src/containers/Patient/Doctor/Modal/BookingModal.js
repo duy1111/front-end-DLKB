@@ -127,7 +127,7 @@ class BookingModal extends Component {
         let { isOpenModal, closeBookingClose, dataTime } = this.props;
         let genders = this.state.genderArr;
         let { language } = this.props;
-        console.log('check props dayBooking' , this.props.dateBooking.toString() )
+        
         return (
             // toggle={}
             <Modal isOpen={isOpenModal} className={'booking-modal-container'} size="lg" centered>
@@ -147,6 +147,8 @@ class BookingModal extends Component {
                                 doctorId={dataTime && dataTime.doctorId ? dataTime.doctorId : ''}
                                 isShowDescriptionDoctor={false}
                                 dataTime={dataTime}
+                                isShowPrince={true}
+                                isShowLinkDetail={false}
                             />
                         </div>
 

@@ -24,8 +24,9 @@ class DoctorSchedule extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         let { language } = this.props;
+        let { detailDoctor } = this.props;
         console.log('moment vi: ', moment(new Date()).format('dddd - DD/MM'));
         console.log('moment en: ', moment(new Date()).locale('en').format('ddd - DD/MM'));
         let arrDays = [];
@@ -53,6 +54,19 @@ class DoctorSchedule extends Component {
 
             object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf();
             arrDays.push(object);
+        }
+        if (detailDoctor && this.props.detailDoctor.id) {
+            let id = detailDoctor.id;
+            let res = await getScheduleDoctorByDate(id, moment(new Date()).startOf('day').valueOf());
+            let allTime = [];
+            if (res && res.errCode === 0) {
+                allTime = res.data;
+                this.setState({
+                    allAvailableTime: allTime,
+                
+                });
+            }
+            console.log(res);
         }
         this.setState({
             arrDays: arrDays,

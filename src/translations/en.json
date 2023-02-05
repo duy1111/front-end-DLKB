@@ -45,7 +45,9 @@
 
         },
         "doctor":{
-            "manage-schedule":"Manage doctor's schedule"
+            "manage-schedule":"Manage doctor's schedule",
+            "manage-patient":"Manage Doctor's patient"
+
         }
     },
 

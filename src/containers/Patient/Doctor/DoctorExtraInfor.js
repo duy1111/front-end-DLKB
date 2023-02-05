@@ -34,7 +34,7 @@ class DoctorExtraInfor extends Component {
         let { language } = this.props;
         let { detailDoctor } = this.props;
         if (detailDoctor && prevProps.detailDoctor.id !== this.props.detailDoctor.id) {
-            let id = detailDoctor.id;
+            let id = detailDoctor.id ? detailDoctor.id :detailDoctor.doctorId;
 
             let res = await getExtraInfoDoctorById(id);
             if (res && res.errCode === 0) {

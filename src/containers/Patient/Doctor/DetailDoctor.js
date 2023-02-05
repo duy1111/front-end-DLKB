@@ -23,7 +23,6 @@ class DetailDoctor extends Component {
                     detailDoctor: res.data,
                 });
             }
-            
         }
     }
 
@@ -36,7 +35,7 @@ class DetailDoctor extends Component {
 
     render() {
         let { detailDoctor } = this.state;
-        console.log('check detail doctor',detailDoctor)
+        console.log('check detail doctor', detailDoctor);
         let nameVi = '',
             nameEn = '';
         let { language } = this.props;
@@ -44,7 +43,7 @@ class DetailDoctor extends Component {
             nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
             nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
         }
-      
+
         return (
             <>
                 <HomeHeader isShowBanner={false} />
@@ -63,17 +62,13 @@ class DetailDoctor extends Component {
                             </div>
                             <div className="content-right">
                                 <div className="doctor-title">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                <div className="doctor-content">
-                                    
-                                </div>
+                                <div className="doctor-content"></div>
                             </div>
                         </div>
                     </div>
                     <div className="schedule-doctor">
                         <div className="content-left">
-                            <DoctorSchedule
-                                detailDoctor={detailDoctor}
-                            />
+                            <DoctorSchedule detailDoctor={detailDoctor} />
                         </div>
                         <div className="content-right">
                             <DoctorExtraInfor detailDoctor={detailDoctor} />

@@ -15,7 +15,6 @@ const getAllCodeService = (inputType) => {
     return axios.get(`/api/allCode?type=${inputType}`);
 };
 const deleteNewUserService = (userId) => {
-    
     //return axios.delete(`/api/delete-user`,{id : userId })
     return axios.delete('/api/delete-user', {
         // headers: {
@@ -67,10 +66,31 @@ const createNewSpecialty = (data) => {
     return axios.post(`/api/create-new-specialty`, data);
 };
 
-
 const getAllSpecialty = () => {
     return axios.get(`/api/get-all-specialty`);
 };
+
+const getDetailSpecialtyById = (id, location) => {
+    return axios.get(`/apt/get-detail-specialty-by-id?specialtyId=${id}&location=${location}`);
+};
+
+const createNewClinic = (data) => {
+    return axios.post(`/api/create-new-clinic`, data);
+};
+
+
+const getAllClinic = () => {
+    return axios.get(`/api/get-all-clinic`);
+};
+
+const getDetailClinicById = (id) => {
+    return axios.get(`/apt/get-detail-clinic-by-id?clinicId=${id}`);
+};
+
+const getAllPatientForDoctor = (doctorId,date) => {
+    return axios.get(`/api/get-list-patient-for-doctor?doctorId=${doctorId}&date=${date}`);
+};
+
 export default handleLogin;
 export {
     getAllUser,
@@ -90,4 +110,9 @@ export {
     postVerifyBookAppointment,
     createNewSpecialty,
     getAllSpecialty,
+    getDetailSpecialtyById,
+    createNewClinic,
+    getAllClinic,
+    getDetailClinicById,
+    getAllPatientForDoctor,
 };
