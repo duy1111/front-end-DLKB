@@ -1,3 +1,14 @@
+div._loading_overlay_wrapper {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    ._loading_overlay_overlay {
+        z-index: 999999999;
+    }
+}
 .manage-patient-container {
     .m-p-title {
         font-size: 1.4rem;
@@ -7,7 +18,7 @@
     }
     .manage-patient-body {
         padding: 0px 20px;
-        
+
         .table-manage-patient {
             margin: 24px 0px;
             table {
