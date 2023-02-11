@@ -6,6 +6,9 @@ import { getDetailInfoDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfor from './DoctorExtraInfor';
+import Comment from '../SocialPlugin/Comment';
+import LikeAndShare from '../SocialPlugin/LikeAndShare';
+
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
@@ -43,7 +46,7 @@ class DetailDoctor extends Component {
             nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
             nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
         }
-
+        let currentURL = process.env.REACT_APP_IS_LOCALHOST === 1 ? 'https://www.facebook.com/' : window.location.href;
         return (
             <>
                 <HomeHeader isShowBanner={false} />
@@ -62,7 +65,18 @@ class DetailDoctor extends Component {
                             </div>
                             <div className="content-right">
                                 <div className="doctor-title">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                <div className="doctor-content"></div>
+                                <div className="doctor-content">
+                                    {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.description && (
+                                        <div
+                                            dangerouslySetInnerHTML={this.createMarkup(
+                                                detailDoctor.Markdown.description,
+                                            )}
+                                        />
+                                    )}
+                                    <div className="like-share-plugin">
+                                        <LikeAndShare dataHref={currentURL} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,7 +95,9 @@ class DetailDoctor extends Component {
                             )}
                         </div>
                     </div>
-                    <div className="comment-doctor"></div>
+                    <div className="comment-doctor">
+                        <Comment dataHref={currentURL} width={'100%'} />
+                    </div>
                 </div>
             </>
         );

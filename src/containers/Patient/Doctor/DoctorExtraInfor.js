@@ -89,9 +89,9 @@ class DoctorExtraInfor extends Component {
                                 />
                             )}
                             .
-                            <span className="click-show" onClick={() => this.showHideDetailInfo()}>
+                            <button className="click-show" onClick={() => this.showHideDetailInfo()}>
                                 <FormattedMessage id="patient.extra-info-doctor.detail" />
-                            </span>
+                            </button>
                         </div>
                     ) : (
                         <>
@@ -137,9 +137,9 @@ class DoctorExtraInfor extends Component {
                             </div>
 
                             <div className="click-show">
-                                <span onClick={() => this.showHideDetailInfo()}>
+                                <button onClick={() => this.showHideDetailInfo()}>
                                     <FormattedMessage id="patient.extra-info-doctor.hide-price" />
-                                </span>
+                                </button>
                             </div>
                         </>
                     )}
