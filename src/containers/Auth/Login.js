@@ -6,6 +6,7 @@ import * as actions from '../../store/actions';
 
 import './Login.scss';
 import { userLoginSuccess } from '../../store/actions';
+import LoadingOverlay from 'react-loading-overlay';
 
 class Login extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class Login extends Component {
             password: '',
             isShowPassword: false,
             errMessage: '',
+            isShowLoading: false,
         };
     }
     handleOnChangeInput = (e) => {
@@ -30,21 +32,24 @@ class Login extends Component {
     handleLogin = async () => {
         this.setState({
             errMessage: '',
+            isShowLoading: true,
         });
         try {
             let data = await handleLogin(this.state.username, this.state.password);
-            console.log(data)
-            if(data && data.errCode !==0){
+            console.log(data);
+            if (data && data.errCode !== 0) {
                 this.setState({
-                    errMessage: data.message
+                    errMessage: data.message,
                 });
             }
-            if(data &&data.errCode===0){
+            if (data && data.errCode === 0) {
                 //todo
-                this.props.userLoginSuccess(data.user)
-                console.log('login success')
+                this.props.userLoginSuccess(data.user);
+                console.log('login success');
+                this.setState({
+                    isShowLoading: false,
+                });
             }
-
         } catch (error) {
             if (error.response) {
                 if (error.response.data) {
@@ -53,7 +58,9 @@ class Login extends Component {
                     });
                 }
             }
-            
+            this.setState({
+                isShowLoading: false,
+            });
             console.log('loi', error);
         }
     };
@@ -65,72 +72,76 @@ class Login extends Component {
     };
 
     handleKeyDown = (e) => {
-        if(e.key === 'Enter'){
-            this.handleLogin()
+        if (e.key === 'Enter') {
+            this.handleLogin();
         }
-    }
+    };
     render() {
         return (
-            <div className="login-background">
-                <div className="login-container">
-                    <div className="login-content row">
-                        <div className="col-12 text-center text-login">Login</div>
-                        <div className="col-12 form-group login-input">
-                            <label>Username</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Enter your username"
-                                value={this.state.username}
-                                onChange={(e) => {
-                                    this.handleOnChangeInput(e);
-                                }}
-                            />
-                        </div>
-                        <div className="col-12 form-group login-input">
-                            <label>Password</label>
-                            <div className="custom-input-password">
+            <LoadingOverlay active={this.state.isShowLoading} spinner text="Loading...">
+                <div className="login-background">
+                    <div className="login-container">
+                        <div className="login-content row">
+                            <div className="col-12 text-center text-login">Login</div>
+                            <div className="col-12 form-group login-input">
+                                <label>Username</label>
                                 <input
+                                    type="text"
                                     className="form-control"
-                                    type={this.state.isShowPassword ? 'text' : 'password'}
-                                    placeholder="Enter your password"
-                                    value={this.state.password}
-                                    onChange={(e) => this.handleOnChangePass(e)}
-                                    onKeyDown={(e) => this.handleKeyDown(e)}
+                                    placeholder="Enter your username"
+                                    value={this.state.username}
+                                    onChange={(e) => {
+                                        this.handleOnChangeInput(e);
+                                    }}
                                 />
-                                <span onClick={() => this.handleShowPassword()}>
-                                    {this.state.isShowPassword ? (
-                                        <i class="fas fa-eye-slash icon-eye"></i>
-                                    ) : (
-                                        <i class="fas fa-eye icon-eye "></i>
-                                    )}
-                                </span>
                             </div>
-                        </div>
-                        <div className="col-12" style={{ color: 'red' }}>{this.state.errMessage}</div>
-                        <div className="col-12 ">
-                            <button
-                                className="btn-login"
-                                onClick={() => {
-                                    this.handleLogin();
-                                }}
-                            >
-                                Login
-                            </button>
-                        </div>
-                        <div className="col-12">
-                            <span>Forgot your password</span>
-                        </div>
-                        <div className="col-12 text-center mt-2">
-                            <span className="login-with">of login with:</span>
-                        </div>
-                        <div className="col-12 social-login text-center">
-                            <i className="fab fa-facebook gg-login"></i>
-                            <i className="fab fa-google fb-login"></i>
+                            <div className="col-12 form-group login-input">
+                                <label>Password</label>
+                                <div className="custom-input-password">
+                                    <input
+                                        className="form-control"
+                                        type={this.state.isShowPassword ? 'text' : 'password'}
+                                        placeholder="Enter your password"
+                                        value={this.state.password}
+                                        onChange={(e) => this.handleOnChangePass(e)}
+                                        onKeyDown={(e) => this.handleKeyDown(e)}
+                                    />
+                                    <span onClick={() => this.handleShowPassword()}>
+                                        {this.state.isShowPassword ? (
+                                            <i class="fas fa-eye-slash icon-eye"></i>
+                                        ) : (
+                                            <i class="fas fa-eye icon-eye "></i>
+                                        )}
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="col-12" style={{ color: 'red' }}>
+                                {this.state.errMessage}
+                            </div>
+                            <div className="col-12 ">
+                                <button
+                                    className="btn-login"
+                                    onClick={() => {
+                                        this.handleLogin();
+                                    }}
+                                >
+                                    Login
+                                </button>
+                            </div>
+                            <div className="col-12">
+                                <span>Forgot your password</span>
+                            </div>
+                            <div className="col-12 text-center mt-2">
+                                <span className="login-with">of login with:</span>
+                            </div>
+                            <div className="col-12 social-login text-center">
+                                <i className="fab fa-facebook gg-login"></i>
+                                <i className="fab fa-google fb-login"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </LoadingOverlay>
         );
     }
 }
@@ -144,9 +155,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
-        
+
         //userLoginFail: () => dispatch(actions.adminLoginFail()),
-        userLoginSuccess:(userInfor)=>dispatch(actions.userLoginSuccess(userInfor))
+        userLoginSuccess: (userInfor) => dispatch(actions.userLoginSuccess(userInfor)),
     };
 };
 
