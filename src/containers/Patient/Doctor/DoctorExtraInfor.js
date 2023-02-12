@@ -19,6 +19,7 @@ class DoctorExtraInfor extends Component {
 
     async componentDidMount() {
         let { detailDoctor } = this.props;
+        console.log('check detailDoctor',detailDoctor)
         let id = detailDoctor.id;
         if (detailDoctor) {
             let res = await getExtraInfoDoctorById(id);
