@@ -47,8 +47,8 @@ const saveBulkSchedule = (data) => {
 const getScheduleDoctorByDate = (doctorId, date) => {
     return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`);
 };
-const getExtraInfoDoctorById = (doctorId, date) => {
-    return axios.get(`/api/get-extra-info-doctor-by-id?doctorId=${doctorId}&date=${date}`);
+const getExtraInfoDoctorById = (doctorId) => {
+    return axios.get(`/api/get-extra-info-doctor-by-id?doctorId=${doctorId}`);
 };
 const getProfileDoctorById = (doctorId, date) => {
     return axios.get(`/api/get-profile-doctor-by-id?doctorId=${doctorId}&date=${date}`);
@@ -78,7 +78,6 @@ const createNewClinic = (data) => {
     return axios.post(`/api/create-new-clinic`, data);
 };
 
-
 const getAllClinic = () => {
     return axios.get(`/api/get-all-clinic`);
 };
@@ -87,11 +86,42 @@ const getDetailClinicById = (id) => {
     return axios.get(`/apt/get-detail-clinic-by-id?clinicId=${id}`);
 };
 
-const getAllPatientForDoctor = (doctorId,date) => {
+const getAllPatientForDoctor = (doctorId, date) => {
     return axios.get(`/api/get-list-patient-for-doctor?doctorId=${doctorId}&date=${date}`);
 };
 const postSendRemedy = (data) => {
     return axios.post(`/api/send-remedy`, data);
+};
+const deleteAClinic = (id) => {
+    //return axios.delete(`/api/delete-user`,{id : userId })
+    return axios.delete('/api/delete-clinic', {
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
+        data: {
+            id: id,
+            //var2: "var2"
+        },
+    });
+};
+const putUpdateSpecialty = (data) => {
+    return axios.put(`/api/update-specialty`, data);
+};
+
+const deleteASpecialty = (id) => {
+    //return axios.delete(`/api/delete-user`,{id : userId })
+    return axios.delete('/api/delete-specialty', {
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
+        data: {
+            id: id,
+            //var2: "var2"
+        },
+    });
+};
+const putUpdateClinic = (data) => {
+    return axios.put(`/api/update-clinic`, data);
 };
 
 export default handleLogin;
@@ -119,4 +149,8 @@ export {
     getDetailClinicById,
     getAllPatientForDoctor,
     postSendRemedy,
+    deleteAClinic,
+    putUpdateClinic,
+    putUpdateSpecialty,
+    deleteASpecialty,
 };

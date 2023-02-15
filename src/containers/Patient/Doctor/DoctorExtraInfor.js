@@ -21,7 +21,7 @@ class DoctorExtraInfor extends Component {
         let { detailDoctor } = this.props;
         console.log('check detailDoctor',detailDoctor)
         let id = detailDoctor.id;
-        if (detailDoctor) {
+        if (id) {
             let res = await getExtraInfoDoctorById(id);
             if (res && res.errCode === 0) {
                 this.setState({

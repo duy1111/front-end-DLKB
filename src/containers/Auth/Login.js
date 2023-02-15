@@ -46,10 +46,10 @@ class Login extends Component {
                 //todo
                 this.props.userLoginSuccess(data.user);
                 console.log('login success');
-                this.setState({
-                    isShowLoading: false,
-                });
             }
+            this.setState({
+                isShowLoading: false,
+            });
         } catch (error) {
             if (error.response) {
                 if (error.response.data) {

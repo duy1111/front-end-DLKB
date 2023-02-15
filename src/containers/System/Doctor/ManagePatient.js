@@ -105,18 +105,16 @@ class ManagePatient extends Component {
             patientName: dataModal.patientName,
         });
         console.log('parent check modal', dataForChild);
-
+        this.setState({
+            isShowLoading:false
+        })
         if (res && res.errCode === 0) {
-            this.setState({
-                isShowLoading:false
-            })
+            
             toast.success('Send memory succeeds');
             await this.getDataPatient();
             this.closeRemedyModal();
         } else {
-            this.setState({
-                isShowLoading:false
-            })
+            
             toast.error('Send memory failed');
         }
     };

@@ -12,7 +12,7 @@ import _ from 'lodash';
 class ManageSchedule extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             selectedOption: null,
             listDoctors: '',
@@ -34,24 +34,18 @@ class ManageSchedule extends Component {
 
         if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
             let data = this.props.allScheduleTime;
-            
+
             if (data && data.length > 0) {
                 data = data.map((item) => {
                     item.isSelected = false;
                     return item;
                 });
             }
-           
+
             this.setState({
                 rangeTime: data,
             });
         }
-        // if (prevProps.language !== this.props.language) {
-        //     let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
-        //     this.setState({
-        //         listDoctors: dataSelect,
-        //     });
-        // }
     }
     handleChange = async (selectedOption) => {
         console.log('check sel', selectedOption);
@@ -59,18 +53,31 @@ class ManageSchedule extends Component {
     };
     buildDataInputSelect = (inputData) => {
         let result = [];
+        console.log('check inputData', inputData);
+        let { userInfo } = this.props;
         let { language } = this.props;
         if (inputData && inputData.length > 0) {
             inputData.map((item, index) => {
-                let object = {};
-                let labelVi = `${item.firstName} ${item.lastName} `;
-                let labelEn = `${item.lastName} ${item.firstName} `;
-                object.label = language === LANGUAGES.VI ? labelVi : labelEn;
-                object.value = item.id;
-                result.push(object);
+                if (userInfo && userInfo.roleId === 'R2') {
+                    if (item.id === userInfo.id) {
+                        let object = {};
+                        let labelVi = `${item.firstName} ${item.lastName} `;
+                        let labelEn = `${item.lastName} ${item.firstName} `;
+                        object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+                        object.value = item.id;
+                        result.push(object);
+                    }
+                } else {
+                    let object = {};
+                    let labelVi = `${item.firstName} ${item.lastName} `;
+                    let labelEn = `${item.lastName} ${item.firstName} `;
+                    object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+                    object.value = item.id;
+                    result.push(object);
+                }
             });
         }
-        
+
         return result;
     };
     handleOnChangeDatePicker = (date) => {
@@ -90,7 +97,6 @@ class ManageSchedule extends Component {
             this.setState({
                 rangeTime: rangeTime,
             });
-            
         }
     };
     handleSaveSchedule = async () => {
@@ -126,17 +132,16 @@ class ManageSchedule extends Component {
         let res = await this.props.saveBulkSchedules({
             arrSchedule: result,
             doctorId: selectedOption.value,
-            date: ''+formatedDate,
+            date: '' + formatedDate,
         });
-        
     };
     render() {
         let { rangeTime } = this.state;
         let { language } = this.props;
-        
+        let { userInfo } = this.props;
         let min = new Date();
-        min.setHours(0,0,0,0);
-        console.log('check state', min);
+        min.setHours(0, 0, 0, 0);
+        console.log('check props userInfo', userInfo);
         return (
             <>
                 <div className="ManageSchedule-container">
@@ -216,6 +221,7 @@ const mapStateToProps = (state) => {
         allDoctors: state.admin.allDoctors,
         language: state.app.language,
         allScheduleTime: state.admin.allScheduleTime,
+        userInfo: state.user.userInfo,
     };
 };
 

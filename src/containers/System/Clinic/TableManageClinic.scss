@@ -1,0 +1,51 @@
+#TableManageClinic {
+    margin-top: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 300px;
+}
+
+#TableManageClinic td,
+#TableManageClinic th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#TableManageClinic tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#TableManageClinic tr:hover {
+    background-color: #ddd;
+}
+
+#TableManageClinic th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04aa6d;
+    color: white;
+}
+.btn-edit {
+    width: 50px;
+    background-color: transparent;
+    outline: none;
+    color: orange;
+    border: none;
+    &:hover {
+        background-color: transparent !important;
+        color: orange !important;
+    }
+}
+.btn-delete {
+    width: 50px;
+    background-color: transparent;
+    outline: none;
+    color: red;
+    border: none;
+    &:hover {
+        background-color: transparent !important;
+        color: red !important;
+    }
+}
