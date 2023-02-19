@@ -1,0 +1,129 @@
+.detail-handbook-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eeeeee;
+    padding-bottom: 200px;
+
+    .intro-handbook-container {
+        margin-top: 70px;
+        height: 400px;
+        width: 100%;
+        
+        .intro-handbook {
+            display: flex;
+            padding: 20px 150px;
+            .content-left-handbook {
+                height: 200px;
+                width: 20%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .avatar {
+                    background: center center no-repeat;
+                    //object-fit:fill;
+                    background-size: cover;
+                    height: 150px;
+                    width: 150px;
+                    border-radius: 50%;
+                }
+            }
+            .content-right-handbook {
+                height: 200px;
+                padding-left: 10px;
+                width: 85%;
+
+                display: flex;
+                flex-direction: column;
+                .handbook-title {
+                    display: flex;
+                    text-transform: uppercase;
+                    padding-top: 40px;
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                }
+                .handbook-content {
+                    padding-top: 10px;
+                    border: 1px solid red;
+                    .handbook-content-item{
+                        padding: 12px 0px;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+    .description-handbook {
+        width: 100%;
+        margin-top: 60px;
+
+        min-height: 200px;
+        padding: 24px 80px;
+        background-color: #ffffff;
+    }
+    .search-sp-doctor {
+        width: 85%;
+        select {
+            margin: 12px;
+            height: 30px;
+            padding: 5px 8px;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    }
+    .each-doctor-container {
+        width: 85%;
+
+        .each-doctor {
+            margin-top: 15px;
+            display: flex;
+            width: 100%;
+            min-height: 250px;
+
+            background-color: #fff;
+            box-shadow: 0 1px 6px black;
+            border-radius: 8px;
+            border-bottom: none;
+            margin-bottom: 10px;
+
+            .dt-content-left {
+                width: 50%;
+                .profile-doctor-container {
+                    padding: 20px !important;
+                    height: 120px !important;
+                    .content-left {
+                        width: 20% !important;
+                        height: 100% !important;
+                    }
+                    .content-right {
+                        width: 80% !important;
+                    }
+                }
+            }
+            .dt-content-right {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                min-height: 300px;
+                padding: 5px;
+                .doctor-schedule {
+                    padding-top: 12px;
+                    .doctor-schedule-container {
+                        border-right: unset !important;
+                    }
+                }
+                .content-right-doctor-extra {
+                    border-top: 1px solid #ddd;
+                    margin-left: -16px;
+                    margin-top: 8px;
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+#confirmHandbook {
+    margin-top: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 300px;
+}
+
+#confirmHandbook td,
+#confirmHandbook th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#confirmHandbook tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#confirmHandbook tr:hover {
+    background-color: #ddd;
+}
+
+#confirmHandbook th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04aa6d;
+    color: white;
+}
+.btn-handbook-edit {
+    min-width: 90px;
+    padding: 6px 12px;
+    height: 32px;
+    margin-left: 24px !important;
+    outline: none;
+    background-color: orange;
+    color: #ffffff;
+    border: none;
+    &:hover {
+        background-color: orange;
+
+        opacity: 0.8;
+    }
+}
+.btn-handbook-delete {
+    min-width: 90px;
+    padding: 6px 12px;
+    height: 32px;
+
+    outline: none;
+    background-color: red;
+    color: #ffffff;
+    border: none;
+    &:hover {
+        background-color: red;
+
+        opacity: 0.8;
+    }
+}

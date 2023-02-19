@@ -39,7 +39,8 @@
             "specialty":"Chuyên khoa",
             "manage-specialty":"Quản lý chuyên khoa",
             "handbook":"Cẩm nang",
-            "manage-handbook":"Quản lý cẩm nang"
+            "manage-handbook":"Quản lý cẩm nang",
+            "confirm-handbook":"Xác nhận cẩm nang"
 
         },
         "doctor":{

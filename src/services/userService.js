@@ -124,6 +124,44 @@ const putUpdateClinic = (data) => {
     return axios.put(`/api/update-clinic`, data);
 };
 
+const createNewHandbook = (data) => {
+    return axios.post(`/api/create-new-handbook`, data);
+};
+const getAllHandbook = () => {
+    return axios.get(`/api/get-all-handbook`);
+};
+
+const deleteHandbook = (id) => {
+    //return axios.delete(`/api/delete-user`,{id : userId })
+    return axios.delete('/api/delete-handbook', {
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        // },
+        data: {
+            id: id,
+            //var2: "var2"
+        },
+    });
+};
+const putUpdateHandbook = (data) => {
+    return axios.put(`/api/update-handbook`, data);
+};
+
+const getHandbookNotApprovedYet = () => {
+    return axios.get(`/api/get-handbook-not-approved-yet`);
+};
+
+const postHandbookApprovedYet = (data) => {
+    return axios.post(`/api/post-handbook-approved-yet`, data);
+};
+
+const getAllDoneHandbook = () => {
+    return axios.get(`/api/get-handbook-done-handbook`);
+};
+
+const getDetailHandbookById = (id) => {
+    return axios.get(`/apt/get-detail-handbook-by-id?id=${id}`);
+};
 export default handleLogin;
 export {
     getAllUser,
@@ -153,4 +191,12 @@ export {
     putUpdateClinic,
     putUpdateSpecialty,
     deleteASpecialty,
+    createNewHandbook,
+    getAllHandbook,
+    deleteHandbook,
+    putUpdateHandbook,
+    getHandbookNotApprovedYet,
+    postHandbookApprovedYet,
+    getAllDoneHandbook,
+    getDetailHandbookById,
 };

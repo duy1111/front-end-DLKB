@@ -57,6 +57,10 @@ export const adminMenu = [
                 name: 'menu.admin.manage-handbook',
                 link: '/system/manage-handbook',
             },
+            {
+                name: 'menu.admin.confirm-handbook',
+                link: '/system/confirm-handbook',
+            }
         ],
     },
 ];
@@ -79,4 +83,14 @@ export const doctorMenu = [
             },
         ],
     },
+    {
+        //quan ly cam nang
+        name: 'menu.admin.handbook',
+        menus: [
+            {
+                name: 'menu.admin.manage-handbook',
+                link: '/system/manage-handbook',
+            },
+        ],
+    }
 ];
