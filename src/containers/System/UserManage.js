@@ -23,7 +23,7 @@ class UserManage extends Component {
         await this.getAllUsersFormReact();
     }
     getAllUsersFormReact = async () => {
-        let response = await getAllUser('');
+        let response = await getAllUser('',this.props.jwtToken);
         if (response && response.errCode === 0) {
             await this.setState({
                 arrUser: response.users,
@@ -158,7 +158,9 @@ class UserManage extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        jwtToken: state.user.jwtToken,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

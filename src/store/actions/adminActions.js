@@ -14,6 +14,8 @@ import {
 } from '../../services/userService';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { connect } from 'react-redux';
+
 
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START
@@ -124,10 +126,10 @@ export const saveUserFailed = () => ({
     type: actionTypes.SAVE_USER_FAILED,
 });
 
-export const fetchAllUsersStart = () => {
+export const fetchAllUsersStart = (jwtToken) => {
     return async (dispatch, getState) => {
         try {
-            let res = await getAllUser('');
+            let res = await getAllUser('',jwtToken);
 
             if (res && res.errCode === 0) {
                 dispatch(fetchAllUsersSuccess(res.users.reverse()));
@@ -262,7 +264,9 @@ export const saveDetailDoctors = (data) => {
                 dispatch({
                     type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
                     data: res.data,
+                    
                 });
+                
                 toast.success('Save a detail doctor succeed!');
             } else {
                 dispatch({
@@ -375,3 +379,12 @@ export const fetchRequiredDoctorInfoSuccess = (Data) => ({
 export const fetchRequiredDoctorInfoFailed = () => ({
     type: actionTypes.FETCH_DOCTOR_INFO_FAILED,
 });
+
+const mapStateToProps = (state) => {
+    return {
+        
+        isShowLoading: state.admin.isShowLoading
+    };
+};
+
+export default connect(mapStateToProps)(saveDetailDoctors);

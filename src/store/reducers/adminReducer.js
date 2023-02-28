@@ -9,7 +9,7 @@ const initialState = {
     topDoctors: [],
     allDoctors: [],
     allScheduleTime: [],
-
+    isShowLoading: false,
     allRequiredDoctorInfo: [],
 };
 
@@ -20,6 +20,17 @@ const adminReducer = (state = initialState, action) => {
             copyState.isLoadingGender = true;
             return {
                 ...copyState,
+            };
+
+        case actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS:
+            state.isShowLoading = false;
+            return {
+                ...state,
+            };
+        case actionTypes.SAVE_DETAIL_DOCTOR_FAILED:
+            state.isShowLoading = false;
+            return {
+                ...state,
             };
         case actionTypes.FETCH_GENDER_SUCCESS:
             state.genders = action.data;
@@ -101,20 +112,19 @@ const adminReducer = (state = initialState, action) => {
             };
 
         case actionTypes.FETCH_DOCTOR_INFO_SUCCESS:
-            state.allRequiredDoctorInfo  = action.data;
-            console.log('check action doctor infor',action)
-            
+            state.allRequiredDoctorInfo = action.data;
+            console.log('check action doctor infor', action);
+
             return {
                 ...state,
             };
 
         case actionTypes.FETCH_DOCTOR_INFO_FAILED:
-
-            state.allRequiredDoctorInfo   =[];
+            state.allRequiredDoctorInfo = [];
             return {
                 ...state,
             };
-            
+
         default:
             return state;
     }

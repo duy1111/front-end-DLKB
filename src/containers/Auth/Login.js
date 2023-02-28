@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import handleLogin from '../../services/userService';
 import * as actions from '../../store/actions';
-
+import axios from 'axios';
 import './Login.scss';
 import { userLoginSuccess } from '../../store/actions';
+import { setJwtToken } from '../../store/actions';
+
 import LoadingOverlay from 'react-loading-overlay';
 
 class Login extends Component {
@@ -17,6 +19,7 @@ class Login extends Component {
             isShowPassword: false,
             errMessage: '',
             isShowLoading: false,
+            jwtToken: '',
         };
     }
     handleOnChangeInput = (e) => {
@@ -29,6 +32,9 @@ class Login extends Component {
             password: e.target.value,
         });
     };
+    componentDidMount(){
+      
+    }
     handleLogin = async () => {
         this.setState({
             errMessage: '',
@@ -42,10 +48,15 @@ class Login extends Component {
                     errMessage: data.message,
                 });
             }
+            console.log('check data token login', data.accessToken);
+
             if (data && data.errCode === 0) {
                 //todo
                 this.props.userLoginSuccess(data.user);
+                this.props.setJwtToken(data.accessToken);
+                
                 console.log('login success');
+                console.log('check prop token login', this.props);
             }
             this.setState({
                 isShowLoading: false,
@@ -149,13 +160,14 @@ class Login extends Component {
 const mapStateToProps = (state) => {
     return {
         lang: state.app.language,
+        jwtToken: state.user.jwtToken,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
-
+        setJwtToken: (jwtToken) => dispatch(actions.setJwtToken(jwtToken)),
         //userLoginFail: () => dispatch(actions.adminLoginFail()),
         userLoginSuccess: (userInfor) => dispatch(actions.userLoginSuccess(userInfor)),
     };

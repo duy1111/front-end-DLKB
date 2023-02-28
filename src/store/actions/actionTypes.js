@@ -11,7 +11,7 @@ const actionTypes = Object.freeze({
     USER_LOGIN_SUCCESS: 'USER_LOGIN_SUCCESS',
     USER_LOGIN_FAIL: 'ADMIN_LOGIN_FAIL',
     PROCESS_LOGOUT: 'PROCESS_LOGOUT',
-
+    SET_JWT_TOKEN: 'SET_JWT_TOKEN',
 
     //admin
 

@@ -18,7 +18,7 @@ class TableManageUser extends Component {
         };
     }
     componentDidMount() {
-        this.props.fetchUserRedux();
+        this.props.fetchUserRedux(this.props.jwtToken);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.listUsers !== this.props.listUsers) {
@@ -77,12 +77,13 @@ class TableManageUser extends Component {
 const mapStateToProps = (state) => {
     return {
         listUsers: state.admin.users,
+        jwtToken: state.user.jwtToken,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
+        fetchUserRedux: (jwtToken) => dispatch(actions.fetchAllUsersStart(jwtToken)),
         deleteAUser: (id) => dispatch(actions.deleteAUser(id)),
     };
 };

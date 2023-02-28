@@ -428,6 +428,8 @@ const mapStateToProps = (state) => {
         positionRedux: state.admin.positions,
         roleRedux: state.admin.roles,
         listUsers: state.admin.users,
+        jwtToken: state.user.jwtToken,
+        
     };
 };
 
@@ -437,7 +439,7 @@ const mapDispatchToProps = (dispatch) => {
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
         createNewUser: (data) => dispatch(actions.createNewUser(data)),
-        fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
+        fetchUserRedux: (jwtToken) => dispatch(actions.fetchAllUsersStart(jwtToken)),
         EditAUser: (data) => dispatch(actions.EditAUser(data)),
         // processLogout: () => dispatch(actions.processLogout()),
         // changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language)),
