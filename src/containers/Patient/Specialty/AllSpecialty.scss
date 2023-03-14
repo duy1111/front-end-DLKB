@@ -1,0 +1,79 @@
+.all-specialty-container {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    overflow-y: scroll;
+    height: 100vh;
+    .all-specialty-header {
+        z-index: 2000;
+        height: 50px;
+        display: flex;
+        position: fixed;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        background-color: aquamarine;
+        .icon-toBack {
+            font-size: 1.4rem;
+
+            top: 0;
+            left: 0;
+            padding-left: 50px;
+            padding-right: 15px;
+        }
+
+        .title-specialty {
+            flex: 1;
+            text-transform: uppercase;
+            font-size: 1.8rem;
+            font-weight: 550;
+            line-height: 50px;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            padding-right: 15px;
+        }
+    }
+    .content-container {
+        margin-top: 60px;
+        .all-specialty-content {
+            &:hover {
+                
+                color: rgb(85, 85, 186);
+                .img-custom {
+                    opacity: 0.8;
+                    background-color: rgb(85, 85, 186);
+                }
+                .title-specialty-item {
+                    color: rgb(85, 85, 186);
+                }
+            }
+            height: 125px;
+            width: 100%;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            .img-custom {
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover !important;
+                background-color: #eee;
+
+                width: 185px;
+                height: 100px;
+            }
+
+            .title-specialty-item {
+                display: block;
+                line-height: 1.3em;
+                font-size: 1.4rem;
+                color: #333;
+                
+            }
+        }
+    }
+}

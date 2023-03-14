@@ -37,7 +37,7 @@ class Handbook extends Component {
             <div className="section-share section-Handbook">
                 <div className="section-content">
                     <div className="section-header">
-                        <span className="Popular-section">Chuyên khoa phổ biến</span>
+                        <span className="Popular-section">Cẩm Nang</span>
                         <button className="btn-section">Xem thêm</button>
                     </div>
                     <Slider {...settings}>

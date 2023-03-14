@@ -25,6 +25,9 @@ class Specialty extends Component {
         
         this.props.history.push(`/detail-specialty/${specialty.id}`)
     };
+    viewMoreInfo = () => {
+        this.props.history.push(`/all-specialty`)
+    }
     render() {
         let { dataSpecialty } = this.state;
         return (
@@ -34,7 +37,7 @@ class Specialty extends Component {
                         <span className="Popular-section">
                             <FormattedMessage id="home-page.speciality-poplular" />
                         </span>
-                        <button className="btn-section">
+                        <button className="btn-section" onClick={() => this.viewMoreInfo()}>
                             <FormattedMessage id="home-page.more-info" />
                         </button>
                     </div>
