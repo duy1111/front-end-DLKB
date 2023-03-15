@@ -76,7 +76,8 @@
         "title":"Manage doctor's examination plan",
         "choose-doctor":"Choose doctor",
         "choose-day":"Choose day",
-        "save":"Save infor"
+        "save":"Save infor",
+        "save-week":"Save Week"
     },
     "patient":{
         "detail-doctor":{

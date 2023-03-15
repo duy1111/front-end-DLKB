@@ -133,8 +133,46 @@ class ManageSchedule extends Component {
             arrSchedule: result,
             doctorId: selectedOption.value,
             date: '' + formatedDate,
+            forWeek: false,
         });
     };
+    handleSaveScheduleToWeek = async() => {
+        let { rangeTime, selectedOption, currentDate } = this.state;
+        let result = [];
+        if (!currentDate) {
+            toast.error('Invalid Date!');
+            return;
+        }
+        if (!selectedOption) {
+            toast.error('Invalid Doctor!');
+            return;
+        }
+
+        //let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+        //let formatedDate = moment(currentDate).unix();
+        let formatedDate = new Date(currentDate).getTime();
+
+        if (rangeTime && rangeTime.length > 0) {
+            let selectedTime = rangeTime.filter((item) => item.isSelected === true);
+            if (selectedTime && selectedTime.length > 0) {
+                selectedTime.map((item) => {
+                    let object = {};
+                    object.doctorId = selectedOption.value;
+                    object.date = formatedDate;
+                    object.timeType = item.keyMap;
+                    result.push(object);
+                });
+            } else {
+                toast.error('Invalid selected time!');
+            }
+        }
+        let res = await this.props.saveBulkSchedules({
+            arrSchedule: result,
+            doctorId: selectedOption.value,
+            date: '' + formatedDate,
+            forWeek: true,
+        });
+    }
     render() {
         let { rangeTime } = this.state;
         let { language } = this.props;
@@ -203,8 +241,13 @@ class ManageSchedule extends Component {
                                 </div>
                             </div>
                             <div className="row">
-                                <button className="btn btn-primary col-1" onClick={() => this.handleSaveSchedule()}>
+                                <button className="btn btn-primary col-1 btn-save-schedule" onClick={() => this.handleSaveSchedule()}>
                                     <FormattedMessage id="manage-schedule.save" />
+                                </button>
+                            
+                                <button className="btn btn-primary col-1" onClick={() => this.handleSaveScheduleToWeek()}>
+                                <FormattedMessage id="manage-schedule.save-week" />
+                                    
                                 </button>
                             </div>
                         </div>
