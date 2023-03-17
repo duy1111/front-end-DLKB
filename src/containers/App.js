@@ -24,6 +24,7 @@ import DetailClinic from './Patient/Clinic/DetailClinic';
 import DetailHandbook from './Patient/Handbook/DetailHandbook';
 import AllSpecialty from './Patient/Specialty/AllSpecialty';
 import AllClinics from './Patient/Clinic/AllClinics';
+import SearchDoctor from './Patient/Doctor/SearchDoctor';
 class App extends Component {
     handlePersistorState = () => {
         const { persistor } = this.props;
@@ -64,6 +65,8 @@ class App extends Component {
                                     <Route path={path.DETAIL_HANDBOOK} component={DetailHandbook} />
                                     <Route path={path.ALL_SPECIALTY} component={AllSpecialty} />
                                     <Route path={path.ALL_CLINICS} component={AllClinics} />
+                                    <Route path={path.SEARCH_DOCTOR} component={SearchDoctor} />
+
 
                                     
                                 </Switch>

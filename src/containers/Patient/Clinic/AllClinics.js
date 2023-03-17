@@ -42,7 +42,7 @@ class AllClinics extends Component {
                     <div className="icon-toBack" onClick={() => this.handleToBack()}>
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </div>
-                    <div className="title-clinic">Chuyên khoa</div>
+                    <div className="title-clinic">Phòng khám</div>
                 </div>
                 <div className="content-container">
                     {dataClinics &&

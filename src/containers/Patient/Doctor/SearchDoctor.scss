@@ -1,0 +1,168 @@
+.Search-doctor-container {
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    width: 100vw;
+    overflow-y: scroll;
+    background-color: #e4dece;
+    height: 100vh;
+    .Search-doctor-header {
+        .icon-toBack{
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 250px;
+            font-size: 2rem;
+            &:hover{
+                color: #b78a28;
+            }
+        }
+        z-index: 2000;
+        height: 60px;
+        display: flex;
+        position: fixed;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+
+        background-color: #979387;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .Search-content-container {
+            width: 380px;
+            height: 40px;
+            background-color: #fff;
+            display: flex;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            border: 1.5px solid transparent;
+            .clear,
+            .loading {
+                outline: none;
+                border: none;
+                position: absolute;
+                right: 42px;
+                top: 50%;
+                font-size: 0.8rem;
+                transform: translateY(-50%);
+                background-color: transparent;
+                color: rgba(22, 24, 35, 0.34);
+            }
+            .loading {
+                animation: spinner 1s linear infinite;
+            }
+            @keyframes spinner {
+                from {
+                    transform: translateY(-50%) rotate(0);
+                }
+                to {
+                    transform: translateY(-50%) rotate(360deg);
+                }
+            }
+            input {
+                color: #333;
+                font-size: 1.3rem;
+                background-color: transparent;
+                height: 100%;
+                flex: 1;
+                border: none;
+                outline: none;
+                padding-right: 40px;
+                padding-left: 32px;
+            }
+            .search-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                height: 100%;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding-right: 18px;
+                background-color: #fff;
+                font-size: 1.4rem;
+
+                color: rgba(22, 24, 35, 0.34);
+                &:hover {
+                    color: rgba(22, 24, 35, 0.03);
+                }
+                &:active {
+                    color: rgba(22, 24, 35, 0.06);
+                }
+            }
+        }
+    }
+    .doctor-item-container {
+        display: flex;
+        padding-top: 60px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        .doctor-item-header {
+            font-family: "Source Sans Pro", -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+            color: #b78a28;
+            line-height: 50px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        .doctor-item {
+            background-color: #eae4d3;
+            width: 1200px;
+
+            .doctor-item-content {
+                height: 120px;
+                width: 100%;
+                display: flex;
+                border-bottom: 1px solid #fff;
+                .img-custom-container{
+                    height: 100%;
+                    width: 120px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .img-custom {
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: cover !important;
+                        background-color: #eee;
+                        border-radius: 50%;
+                        width: 100px;
+                        height: 100px;
+                    }
+                    
+                }
+                .doctor-item-description{
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    .doctor-item-name{
+                        font-family: "Source Sans Pro", -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                        font-weight: 500;
+                        font-size: 1.6rem;
+                        color: #333333;
+                        line-height: 30px;
+                        &:hover{
+                            color: #b78a28;
+                        }
+                    }
+                    .doctor-item-specialty{
+                        font-family: "Source Sans Pro", -apple-system, "system-ui", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                        font-weight: 400;
+                        font-size: 1.4rem;
+                        color: #333333;
+                        line-height: 26px;
+                    }
+                }
+                
+                
+            }
+        }
+    }
+}

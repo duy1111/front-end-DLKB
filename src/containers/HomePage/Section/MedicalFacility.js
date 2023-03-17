@@ -25,6 +25,10 @@ class MedicalFacility extends Component {
     handleViewDetailClinic = (clinic) => {
         this.props.history.push(`/detail-clinic/${clinic.id}`)
     }
+    viewMoreInfo = () => {
+        this.props.history.push(`/all-clinics`)
+    }
+    
     render() {
         console.log('check state clinic', this.state)
         let {dataClinics} = this.state
@@ -33,7 +37,9 @@ class MedicalFacility extends Component {
                 <div className="section-content">
                     <div className="section-header">
                         <span className="Popular-section">Cơ sở y tế nổi bật</span>
-                        <button className="btn-section">Xem thêm</button>
+                        <button className="btn-section" 
+                             onClick={() => this.viewMoreInfo()}>
+                        Xem thêm</button>
                     </div>
                     <Slider {...this.props.settings}>
                     {dataClinics &&
@@ -43,7 +49,7 @@ class MedicalFacility extends Component {
                                     <div
                                         className="section-body"
                                         key={index}
-                                        onClick={() => this.handleViewDetailClinic(item)}
+                                      
                                     >
                                         <div
                                             className="img-custom"

@@ -11,6 +11,7 @@ export const path = {
     DETAIL_HANDBOOK:'/detail-handbook/:id',
     ALL_SPECIALTY:'/all-specialty',
     ALL_CLINICS:'/all-clinics',
+    SEARCH_DOCTOR:'/search-doctor',
 };
 
 export const LANGUAGES = {

@@ -38,6 +38,10 @@ const getAllDoctors = () => {
     return axios.get(`/api/get-all-doctor`);
 };
 
+const getSearchDoctor = (name) => {
+    return axios.get(`/api/get-doctor-search?name=${name}`)
+}
+
 const saveDetailDoctor = (data) => {
     return axios.post(`/api/save-info-doctor`, data);
 };
@@ -202,5 +206,5 @@ export {
     getHandbookNotApprovedYet,
     postHandbookApprovedYet,
     getAllDoneHandbook,
-    getDetailHandbookById,
+    getDetailHandbookById,getSearchDoctor,
 };
