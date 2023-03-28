@@ -121,7 +121,8 @@ class SearchDoctor extends Component {
 
                                             {item.Doctor_Infor && (
                                                 <div className="doctor-item-specialty">
-                                                    {item.Doctor_Infor.specialtyData.name}
+
+                                                    { item.Doctor_Infor.specialtyData.name ? item.Doctor_Infor.specialtyData.name : item}
                                                 </div>
                                             )}
                                         </div>
