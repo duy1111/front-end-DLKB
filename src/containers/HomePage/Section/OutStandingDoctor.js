@@ -71,7 +71,7 @@ class OutStandingDoctor extends Component {
                                         </div>
                                         <div className="position text-center">
                                             <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                            <div>{item.Doctor_Infor.specialtyData.name}</div>
+                                            <div>{item && item.Doctor_Infor &&  item.Doctor_Infor.specialtyData.name ?item.Doctor_Infor.specialtyData.name : ''}</div>
                                         </div>
                                     </div>
                                 );
