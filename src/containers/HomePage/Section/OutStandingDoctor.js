@@ -29,6 +29,9 @@ class OutStandingDoctor extends Component {
         console.log('check doctor detail',doctor)
         this.props.history.push(`/detail-doctor/${doctor.id}`)
     };
+    viewMoreInfo = () => {
+        this.props.history.push(`/search-doctor`)
+    }
     render() {
         let allDoctors = this.state.arrDoctors;
         console.log('check state outs',allDoctors)
@@ -42,7 +45,7 @@ class OutStandingDoctor extends Component {
                         <span className="Popular-section">
                             <FormattedMessage id="home-page.outstanding-doctor" />
                         </span>
-                        <button className="btn-section">
+                        <button className="btn-section" onClick={() => this.viewMoreInfo()} >
                             <FormattedMessage id="home-page.more-info" />
                         </button>
                     </div>
