@@ -9,6 +9,9 @@ const getAllUser = (userId, accessToken) => {
         },
     });
 };
+const handleRegister = (data) => {
+    return axios.post('/api/register', data);
+};
 const createNewUserService = (data) => {
     return axios.post(`/api/create-new-user`, data);
 };
@@ -207,4 +210,5 @@ export {
     postHandbookApprovedYet,
     getAllDoneHandbook,
     getDetailHandbookById,getSearchDoctor,
+    handleRegister
 };

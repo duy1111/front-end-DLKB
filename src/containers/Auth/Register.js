@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import handleLogin from '../../services/userService';
+import { handleRegister } from '../../services/userService';
 import * as actions from '../../store/actions';
-import axios from 'axios';
+
 import './Login.scss';
-import { userLoginSuccess } from '../../store/actions';
-import { setJwtToken } from '../../store/actions';
 
 import LoadingOverlay from 'react-loading-overlay';
-import { Link } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: '',
             isShowPassword: false,
             errMessage: '',
             isShowLoading: false,
-            jwtToken: '',
+            firstName:'',
+            lastName:''
         };
     }
     handleOnChangeInput = (e) => {
         this.setState({
-            username: e.target.value,
+            email: e.target.value,
+        });
+    };
+    handleOnChangeFirstName = (e) => {
+        this.setState({
+            firstName: e.target.value,
+        });
+    };
+    handleOnChangeLastName = (e) => {
+        this.setState({
+            lastName: e.target.value,
         });
     };
     handleOnChangePass = (e) => {
@@ -42,22 +50,18 @@ class Login extends Component {
             isShowLoading: true,
         });
         try {
-            let data = await handleLogin(this.state.username, this.state.password);
+            let data = await handleRegister(this.state);
             console.log(data);
             if (data && data.errCode !== 0) {
                 this.setState({
                     errMessage: data.message,
                 });
             }
-            console.log('check data token login', data.accessToken);
-
             if (data && data.errCode === 0) {
-                //todo
-                this.props.userLoginSuccess(data.user);
-                this.props.setJwtToken(data.accessToken);
                 
-                console.log('login success');
-                console.log('check prop token login', this.props);
+                
+                console.log('Register success');
+                
             }
             this.setState({
                 isShowLoading: false,
@@ -94,14 +98,14 @@ class Login extends Component {
                 <div className="login-background">
                     <div className="login-container">
                         <div className="login-content row">
-                            <div className="col-12 text-center text-login">Login</div>
+                            <div className="col-12 text-center text-login">Register</div>
                             <div className="col-12 form-group login-input">
-                                <label>Username</label>
+                                <label>Email</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Enter your username"
-                                    value={this.state.username}
+                                    placeholder="Enter your email"
+                                    value={this.state.email}
                                     onChange={(e) => {
                                         this.handleOnChangeInput(e);
                                     }}
@@ -127,6 +131,30 @@ class Login extends Component {
                                     </span>
                                 </div>
                             </div>
+                            <div className="col-12 form-group login-input">
+                                <label>First Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter your firstName"
+                                    value={this.state.firstName}
+                                    onChange={(e) => {
+                                        this.handleOnChangeFirstName(e);
+                                    }}
+                                />
+                            </div>
+                            <div className="col-12 form-group login-input">
+                                <label>LastName</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Enter your lastName"
+                                    value={this.state.lastName}
+                                    onChange={(e) => {
+                                        this.handleOnChangeLastName(e);
+                                    }}
+                                />
+                            </div>
                             <div className="col-12" style={{ color: 'red' }}>
                                 {this.state.errMessage}
                             </div>
@@ -143,16 +171,12 @@ class Login extends Component {
                             <div className="col-12">
                                 <span>Forgot your password</span>
                             </div>
-                            
                             <div className="col-12 text-center mt-2">
                                 <span className="login-with">of login with:</span>
                             </div>
                             <div className="col-12 social-login text-center">
                                 <i className="fab fa-facebook gg-login"></i>
                                 <i className="fab fa-google fb-login"></i>
-                            </div>
-                            <div className="col-12 text-center mt-2">
-                                <Link to={'register'} className="login-with">If i has't Account, Register Now</Link>
                             </div>
                         </div>
                     </div>

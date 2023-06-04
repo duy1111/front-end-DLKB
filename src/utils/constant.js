@@ -12,6 +12,7 @@ export const path = {
     ALL_SPECIALTY:'/all-specialty',
     ALL_CLINICS:'/all-clinics',
     SEARCH_DOCTOR:'/search-doctor',
+    REGISTER:'/register'
 };
 
 export const LANGUAGES = {

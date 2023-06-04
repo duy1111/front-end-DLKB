@@ -25,6 +25,7 @@ import DetailHandbook from './Patient/Handbook/DetailHandbook';
 import AllSpecialty from './Patient/Specialty/AllSpecialty';
 import AllClinics from './Patient/Clinic/AllClinics';
 import SearchDoctor from './Patient/Doctor/SearchDoctor';
+import Register from './Auth/Register';
 class App extends Component {
     handlePersistorState = () => {
         const { persistor } = this.props;
@@ -55,6 +56,8 @@ class App extends Component {
                                 <Switch>
                                     <Route path={path.HOME} exact component={Home} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                    <Route path={path.REGISTER} component={Register} />
+
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={'/doctor'} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
