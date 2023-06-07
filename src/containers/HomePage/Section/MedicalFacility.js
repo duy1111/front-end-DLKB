@@ -49,7 +49,7 @@ class MedicalFacility extends Component {
                                     <div
                                         className="section-body"
                                         key={index}
-                                      
+                                        onClick={() => this.handleViewDetailClinic(item)}
                                     >
                                         <div
                                             className="img-custom"
