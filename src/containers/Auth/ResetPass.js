@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import handleLogin from '../../services/userService';
-import * as actions from '../../store/actions';
+import {postResetPassword} from '../../services/userService';
+
 import axios from 'axios';
 import './Login.scss';
-import { userLoginSuccess } from '../../store/actions';
-import { setJwtToken } from '../../store/actions';
 
 import LoadingOverlay from 'react-loading-overlay';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-class Login extends Component {
+class ResetPass extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,29 +35,27 @@ class Login extends Component {
     componentDidMount(){
       
     }
-    handleLogin = async () => {
+    handleResetPass = async () => {
         this.setState({
             errMessage: '',
             isShowLoading: true,
         });
         try {
-            let data = await handleLogin(this.state.username, this.state.password);
+            let data = await postResetPassword({email:this.state.username, password:this.state.password});
             console.log(data);
             if (data && data.errCode !== 0) {
                 this.setState({
                     errMessage: data.message,
                 });
-            }
-            console.log('check data token login', data.accessToken);
-
-            if (data && data.errCode === 0) {
-                //todo
-                this.props.userLoginSuccess(data.user);
-                this.props.setJwtToken(data.accessToken);
+                  
                 
-                console.log('login success');
-                console.log('check prop token login', this.props);
+
             }
+            if(data && data.errCode === 0){
+                this.props.history.push(`/`)
+                toast.success('Vui lòng kiểm tra email')
+            }
+            
             this.setState({
                 isShowLoading: false,
             });
@@ -73,7 +70,7 @@ class Login extends Component {
             this.setState({
                 isShowLoading: false,
             });
-            console.log('loi', error);
+            
         }
     };
 
@@ -85,7 +82,7 @@ class Login extends Component {
 
     handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            this.handleLogin();
+            this.handleResetPass();
         }
     };
     render() {
@@ -94,13 +91,13 @@ class Login extends Component {
                 <div className="login-background">
                     <div className="login-container">
                         <div className="login-content row">
-                            <div className="col-12 text-center text-login">Login</div>
+                            <div className="col-12 text-center text-login">reset password</div>
                             <div className="col-12 form-group login-input">
-                                <label>Username</label>
+                                <label>Email</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Enter your username"
+                                    placeholder="Enter your email"
                                     value={this.state.username}
                                     onChange={(e) => {
                                         this.handleOnChangeInput(e);
@@ -134,26 +131,13 @@ class Login extends Component {
                                 <button
                                     className="btn-login"
                                     onClick={() => {
-                                        this.handleLogin();
+                                        this.handleResetPass();
                                     }}
                                 >
-                                    Login
+                                    ResetPass
                                 </button>
                             </div>
-                            <div  className="col-12">
-                                <Link to={'reset-pass'}>Forgot your password</Link>
-                            </div>
                             
-                            <div className="col-12 text-center mt-2">
-                                <span className="login-with">of login with:</span>
-                            </div>
-                            <div className="col-12 social-login text-center">
-                                <i className="fab fa-facebook gg-login"></i>
-                                <i className="fab fa-google fb-login"></i>
-                            </div>
-                            <div className="col-12 text-center mt-2">
-                                <Link to={'register'} className="login-with">If i has't Account, Register Now</Link>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,10 +156,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
-        setJwtToken: (jwtToken) => dispatch(actions.setJwtToken(jwtToken)),
-        //userLoginFail: () => dispatch(actions.adminLoginFail()),
-        userLoginSuccess: (userInfor) => dispatch(actions.userLoginSuccess(userInfor)),
+
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ResetPass));

@@ -72,6 +72,13 @@ const postPatientBookAppointment = (data) => {
 const postVerifyBookAppointment = (data) => {
     return axios.post(`/api/verify-book-appointment`, data);
 };
+const postResetPassword = (data) => {
+    return axios.post(`/api/reset-password`, data);
+};
+
+const postVerifyResetPassword = (data) => {
+    return axios.post(`/api/verify-reset-password`, data);
+};
 
 const createNewSpecialty = (data) => {
     return axios.post(`/api/create-new-specialty`, data);
@@ -210,5 +217,7 @@ export {
     postHandbookApprovedYet,
     getAllDoneHandbook,
     getDetailHandbookById,getSearchDoctor,
-    handleRegister
+    handleRegister,
+    postResetPassword,
+    postVerifyResetPassword
 };

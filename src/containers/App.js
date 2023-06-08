@@ -26,6 +26,8 @@ import AllSpecialty from './Patient/Specialty/AllSpecialty';
 import AllClinics from './Patient/Clinic/AllClinics';
 import SearchDoctor from './Patient/Doctor/SearchDoctor';
 import Register from './Auth/Register';
+import VerifyPassword from './Auth/VerifyPassword';
+import ResetPass from './Auth/ResetPass';
 class App extends Component {
     handlePersistorState = () => {
         const { persistor } = this.props;
@@ -57,13 +59,15 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={Home} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.REGISTER} component={Register} />
-
+                                    <Route path={path.RESET_PASSWORD} component={ResetPass} />
+                                    
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={'/doctor'} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
+                                    <Route path={path.VERIFY_PASSWORD} component={VerifyPassword} />
                                     <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
                                     <Route path={path.DETAIL_HANDBOOK} component={DetailHandbook} />
                                     <Route path={path.ALL_SPECIALTY} component={AllSpecialty} />
