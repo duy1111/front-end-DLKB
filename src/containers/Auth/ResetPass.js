@@ -105,12 +105,12 @@ class ResetPass extends Component {
                                 />
                             </div>
                             <div className="col-12 form-group login-input">
-                                <label>Password</label>
+                                <label>New Password</label>
                                 <div className="custom-input-password">
                                     <input
                                         className="form-control"
                                         type={this.state.isShowPassword ? 'text' : 'password'}
-                                        placeholder="Enter your password"
+                                        placeholder="Enter your new password"
                                         value={this.state.password}
                                         onChange={(e) => this.handleOnChangePass(e)}
                                         onKeyDown={(e) => this.handleKeyDown(e)}
