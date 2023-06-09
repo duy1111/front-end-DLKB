@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getAllDoneHandbook } from '../../../services/userService';
 import Slider from 'react-slick';
 import { withRouter } from 'react-router';
+import { LANGUAGES, formatVietnameseToEnglish } from '../../../utils';
 
 class Handbook extends Component {
     constructor(props) {
@@ -26,6 +27,7 @@ class Handbook extends Component {
     };
     render() {
         let { dataHandbook } = this.state;
+        const language = this.props.language
         var settings = {
             dots: true,
             infinite: true,
@@ -37,8 +39,8 @@ class Handbook extends Component {
             <div className="section-share section-Handbook">
                 <div className="section-content">
                     <div className="section-header">
-                        <span className="Popular-section">Cẩm Nang</span>
-                        <button className="btn-section">Xem thêm</button>
+                        <span className="Popular-section">{language ===LANGUAGES.VI ? 'Cẩm Nang' : 'Handbook'}</span>
+                        <button className="btn-section">{language ===LANGUAGES.VI ? 'Xem thêm' : 'More Info'}</button>
                     </div>
                     <Slider {...settings}>
                         {dataHandbook &&
@@ -54,7 +56,7 @@ class Handbook extends Component {
                                             className="img-custom"
                                             style={{ backgroundImage: `url(${item.image})` }}
                                         ></div>
-                                        <div className="clinic-name">{item.name}</div>
+                                        <div className="clinic-name">{language === LANGUAGES.VI ? item.name : formatVietnameseToEnglish(item.name)}</div>
                                     </div>
                                 );
                             })}

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import Slider from 'react-slick';
-import { LANGUAGES } from '../../../utils';
+import { LANGUAGES, formatVietnameseToEnglish } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
 
@@ -73,8 +73,8 @@ class OutStandingDoctor extends Component {
                                             ></div>
                                         </div>
                                         <div className="position text-center">
-                                            <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                            <div>{item && item.Doctor_Infor &&  item.Doctor_Infor.specialtyData.name ?item.Doctor_Infor.specialtyData.name : ''}</div>
+                                            <div>{language === LANGUAGES.VI ? nameVi : formatVietnameseToEnglish(nameEn)}</div>
+                                            <div>{item && item.Doctor_Infor &&  item.Doctor_Infor.specialtyData.name ?item.Doctor_Infor.specialtyData.name && language === LANGUAGES.VI ?item.Doctor_Infor.specialtyData.name : formatVietnameseToEnglish(item.Doctor_Infor.specialtyData.name)  : ''}</div>
                                         </div>
                                     </div>
                                 );

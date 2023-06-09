@@ -5,6 +5,7 @@ import './MedicalFacility.scss';
 import Slider from 'react-slick';
 import { getAllClinic } from '../../../services/userService';
 import { withRouter } from 'react-router';
+import { LANGUAGES, formatVietnameseToEnglish } from '../../../utils';
 
 class MedicalFacility extends Component {
     constructor(props){
@@ -32,11 +33,13 @@ class MedicalFacility extends Component {
     render() {
         console.log('check state clinic', this.state)
         let {dataClinics} = this.state
+        let language = this.props.language;
+
         return (
             <div className="section-share section-medical-facility">
                 <div className="section-content">
                     <div className="section-header">
-                        <span className="Popular-section">Cơ sở y tế nổi bật</span>
+                        <span className="Popular-section"> {language === LANGUAGES.VI ? 'Cơ sở y tế nổi bật': 'Outstanding medical facility'}</span>
                         <button className="btn-section" 
                              onClick={() => this.viewMoreInfo()}>
                         Xem thêm</button>
@@ -55,7 +58,7 @@ class MedicalFacility extends Component {
                                             className="img-custom"
                                             style={{ backgroundImage: `url(${item.image})` }}
                                         ></div>
-                                        <div className='clinic-name' >{item.name}</div>
+                                        <div className='clinic-name' >{language === LANGUAGES.VI ? item.name : formatVietnameseToEnglish(item.name)}</div>
                                     </div>
                                 );
                             })}
@@ -69,6 +72,7 @@ class MedicalFacility extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        language: state.app.language,
         isLoggedIn: state.user.isLoggedIn,
     };
 };

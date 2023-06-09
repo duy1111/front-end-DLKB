@@ -5,6 +5,7 @@ import './Specialty.scss';
 import Slider from 'react-slick';
 import { getAllSpecialty } from '../../../services/userService';
 import { withRouter } from 'react-router';
+import { LANGUAGES, formatVietnameseToEnglish } from '../../../utils';
 class Specialty extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +31,7 @@ class Specialty extends Component {
     }
     render() {
         let { dataSpecialty } = this.state;
+        let language = this.props.language
         return (
             <div className="section-share section-specialty">
                 <div className="section-content">
@@ -55,7 +57,7 @@ class Specialty extends Component {
                                             className="img-custom"
                                             style={{ backgroundImage: `url(${item.image})` }}
                                         ></div>
-                                        <div>{item.name}</div>
+                                        <div>{language === LANGUAGES.VI ? item.name : formatVietnameseToEnglish(item.name)}</div>
                                     </div>
                                 );
                             })}
