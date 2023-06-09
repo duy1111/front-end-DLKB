@@ -141,7 +141,7 @@ class Login extends Component {
                                 </button>
                             </div>
                             <div  className="col-12">
-                                <Link to={'reset-pass'}>Forgot your password</Link>
+                                <Link className={'text-link'} to={'reset-pass'}>Forgot your password?</Link>
                             </div>
                             
                             <div className="col-12 text-center mt-2">
@@ -152,7 +152,7 @@ class Login extends Component {
                                 <i className="fab fa-google fb-login"></i>
                             </div>
                             <div className="col-12 text-center mt-2">
-                                <Link to={'register'} className="login-with">If i has't Account, Register Now</Link>
+                                <Link to={'register'}  className="login-with text-link">If I hasn't Account, Register Now</Link>
                             </div>
                         </div>
                     </div>
